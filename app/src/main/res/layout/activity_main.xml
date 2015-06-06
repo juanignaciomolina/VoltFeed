@@ -1,0 +1,33 @@
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ar.com.wolox.woloxtrainingmolina.activities.MainActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <com.droidko.voltfeed.ui.widget.SlidingTabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guideline_yellow"
+        android:background="@color/action_bar_gray"
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/support_elevation"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:src="@drawable/support_elevation"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>

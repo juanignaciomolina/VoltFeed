@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
-import com.droidko.voltfeed.TrainingApp;
+import com.droidko.voltfeed.VoltFeedApp;
 import com.droidko.voltfeed.api.SignUpService;
 import com.droidko.voltfeed.entities.User;
 import com.droidko.voltfeed.ui.ConnectingDialog;
@@ -88,7 +88,7 @@ public class SignUpActivity extends ActionBarActivity {
                 R.id.toolbar_title,
                 getString(R.string.title_activity_sign_up),
                 R.id.toolbar_logo,
-                R.drawable.topbarlogo);
+                R.drawable.ic_topbar);
     }
 
     private void initPreferences() {
@@ -98,7 +98,7 @@ public class SignUpActivity extends ActionBarActivity {
 
     private void initApiConnection() {
         //Get a connection to the Parsi API by requesting it to the app level class
-        mSignUpService = TrainingApp.getRestAdapter().create(SignUpService.class);
+        mSignUpService = VoltFeedApp.getRestAdapter().create(SignUpService.class);
     }
 
     private void setListeners() {

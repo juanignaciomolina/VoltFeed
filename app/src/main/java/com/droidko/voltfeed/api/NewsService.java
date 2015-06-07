@@ -9,5 +9,5 @@ public interface NewsService {
     @GET(Config.PARSE_NEWS)
     void getNews(@Query("skip") int fromPos,
                @Query("limit") int NumbOfNews,
-               retrofit.Callback<NewsRequestAdapter> newsRequestAdapterCallback);
+               retrofit.Callback<PostsRequestAdapter> newsRequestAdapterCallback);
 }

@@ -32,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.droidko.voltfeed.R;
-import com.droidko.voltfeed.ui.ViewPagerAdapter;
+import com.droidko.voltfeed.ui.adapters.ViewPagerAdapter;
 
 /**
  * To be used with ViewPager to provide a tab indicator component which give constant feedback as to

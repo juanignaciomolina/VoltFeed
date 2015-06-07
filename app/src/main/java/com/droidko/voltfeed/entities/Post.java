@@ -3,7 +3,7 @@ package com.droidko.voltfeed.entities;
 /**
  * Created by juan on 31/03/15.
  */
-public class News {
+public class Post {
 
     private String id;
     private String[] likes;
@@ -13,7 +13,6 @@ public class News {
     private String userId;
     private String createdAt;
     private String updatedAt;
-    private boolean isLoader = false;
 
     public String getId() {
         return id;
@@ -79,11 +78,4 @@ public class News {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isLoader() {
-        return isLoader;
-    }
-
-    public void setLoader(boolean isLoader) {
-        this.isLoader = isLoader;
-    }
 }

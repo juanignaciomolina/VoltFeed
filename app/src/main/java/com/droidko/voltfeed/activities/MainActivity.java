@@ -13,10 +13,10 @@ import android.view.View;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
-import com.droidko.voltfeed.TrainingApp;
+import com.droidko.voltfeed.VoltFeedApp;
 import com.droidko.voltfeed.api.LogInSessionService;
 import com.droidko.voltfeed.entities.User;
-import com.droidko.voltfeed.ui.ViewPagerAdapter;
+import com.droidko.voltfeed.ui.adapters.ViewPagerAdapter;
 import com.droidko.voltfeed.ui.widget.SlidingTabLayout;
 import com.droidko.voltfeed.utils.UiHelper;
 
@@ -79,9 +79,9 @@ public class MainActivity extends ActionBarActivity {
                 this,
                 R.id.toolbar,
                 R.id.toolbar_title,
-                getString(R.string.general_company_name),
+                getString(R.string.general_app_name),
                 R.id.toolbar_logo,
-                R.drawable.topbarlogo);
+                R.drawable.ic_topbar);
 
         //If the OS version is LOLLIPOP or higher we use the elevation attribute,
         //otherwise we use a fake elevation with a degrade image. We have to do this
@@ -139,9 +139,9 @@ public class MainActivity extends ActionBarActivity {
     private void initSessionApiConnection() {
         //Get a connection to the Parse API (with a user session token)
         //by requesting it to the app level class
-        TrainingApp.getParseApiHelper().setSessionToken(mSessionToken);
-        TrainingApp.setRestAdapter(null); //This forces the TrainingApp class to get a new Adapter
-        mLogInSessionService = TrainingApp.getRestAdapter().create(LogInSessionService.class);
+        VoltFeedApp.getParseApiHelper().setSessionToken(mSessionToken);
+        VoltFeedApp.setRestAdapter(null); //This forces the VoltFeedApp class to get a new Adapter
+        mLogInSessionService = VoltFeedApp.getRestAdapter().create(LogInSessionService.class);
     }
 
     private void doLogIn() {

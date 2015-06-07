@@ -1,6 +1,6 @@
 <resources>
-    <string name="general_company_name">Wolox</string>
-    <string name="general_app_name">Wolox News</string>
+    <string name="general_company_name">Droidko</string>
+    <string name="general_app_name">VoltFeed</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">Log In</string>
     <string name="title_activity_sign_up">Sign up</string>
@@ -22,9 +22,9 @@
     <string name="signup_passwords_dont_match">Passwords don\'t match</string>
     <string name="signup_invalid_username">Username unavailable, please choose another one</string>
     <string name="error_connection_unknown">Unknown connection error</string>
-    <string name="fragment_news_name">NEWS</string>
+    <string name="fragment_news_name">TIMELINE</string>
     <string name="fragment_profile_name">PROFILE</string>
     <string name="signup_user_created">User created</string>
-    <string name="fragment_news_no_news">There are no news to display\nWait a little bit and pull down to refresh</string>
+    <string name="fragment_news_no_news">There are no posts to display\nWait a little bit and pull down to refresh</string>
     <string name="main_activity_session_expired">Session expired. Please Log In again</string>
 </resources>

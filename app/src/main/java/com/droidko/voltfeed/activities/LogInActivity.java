@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
-import com.droidko.voltfeed.TrainingApp;
+import com.droidko.voltfeed.VoltFeedApp;
 import com.droidko.voltfeed.api.LogInService;
 import com.droidko.voltfeed.api.ParseAPIHelper;
 import com.droidko.voltfeed.entities.User;
@@ -118,7 +118,7 @@ public class LogInActivity extends FragmentActivity {
 
     private void initApiConnection() {
         //Get a connection to the Parsi API by requesting it to the app level class
-        mLogInService = TrainingApp.getRestAdapter().create(LogInService.class);
+        mLogInService = VoltFeedApp.getRestAdapter().create(LogInService.class);
     }
 
     private void initFragments() {

@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
-                android:src="@drawable/loginlogo"/>
+                android:src="@drawable/ic_logo"/>
 
             <EditText
                 android:id="@+id/et_email"

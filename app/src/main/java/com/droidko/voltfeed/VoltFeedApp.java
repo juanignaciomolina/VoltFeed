@@ -6,7 +6,7 @@ import com.droidko.voltfeed.api.ParseAPIHelper;
 
 import retrofit.RestAdapter;
 
-public class TrainingApp extends Application {
+public class VoltFeedApp extends Application {
 
     private static ParseAPIHelper sParseAPIHelper;
     private static RestAdapter sRestAdapter;
@@ -21,7 +21,7 @@ public class TrainingApp extends Application {
     }
 
     public static void setParseApiHelper(ParseAPIHelper sParseApiHelper) {
-        TrainingApp.sParseAPIHelper = sParseApiHelper;
+        VoltFeedApp.sParseAPIHelper = sParseApiHelper;
     }
 
     //The RestAdapter instance is created on-demand if it hasn't been instantiated before
@@ -33,7 +33,7 @@ public class TrainingApp extends Application {
     }
 
     public static void setRestAdapter(RestAdapter sRestAdapter) {
-        TrainingApp.sRestAdapter = sRestAdapter;
+        VoltFeedApp.sRestAdapter = sRestAdapter;
     }
 
 }

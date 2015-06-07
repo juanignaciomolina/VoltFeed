@@ -16,12 +16,13 @@ import android.widget.ProgressBar;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
-import com.droidko.voltfeed.TrainingApp;
+import com.droidko.voltfeed.VoltFeedApp;
 import com.droidko.voltfeed.activities.MainActivity;
-import com.droidko.voltfeed.api.NewsRequestAdapter;
 import com.droidko.voltfeed.api.NewsService;
+import com.droidko.voltfeed.api.PostsRequestAdapter;
+import com.droidko.voltfeed.entities.TimelineRow;
 import com.droidko.voltfeed.entities.User;
-import com.droidko.voltfeed.ui.NewsRecyclerViewAdapter;
+import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.melnykov.fab.FloatingActionButton;
 
@@ -30,7 +31,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class NewsFragment extends Fragment {
+public class TimelineFragment extends Fragment {
 
     private Activity mActivity;
     private NewsService mNewsService;
@@ -38,11 +39,11 @@ public class NewsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private FloatingActionButton mFab;
-    private LinearLayout mNoNewsHolder;
+    private LinearLayout mNoPostsHolder;
     private LinearLayout mNoInternetHolder;
     private ProgressBar mProgressBar;
 
-    private NewsRecyclerViewAdapter mNewsRecyclerViewAdapter;
+    private TimelineRecyclerViewAdapter mTimelineRecyclerViewAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
     private User mUser;
@@ -52,7 +53,7 @@ public class NewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_news, container, false);
+        return inflater.inflate(R.layout.fragment_timeline, container, false);
     }
 
     @Override
@@ -83,15 +84,16 @@ public class NewsFragment extends Fragment {
         mRecyclerView = (RecyclerView) mActivity.findViewById(R.id.recycler_view_news);
         mFab = (FloatingActionButton) mActivity.findViewById(R.id.fab);
         mSwipeRefreshLayout = (SwipeRefreshLayout) mActivity.findViewById(R.id.swipe_refresh_layout);
-        mNoNewsHolder = (LinearLayout) mActivity.findViewById(R.id.no_news_holder);
+        mNoPostsHolder = (LinearLayout) mActivity.findViewById(R.id.no_news_holder);
         mNoInternetHolder = (LinearLayout) mActivity.findViewById(R.id.no_internet_holder);
         mProgressBar = (ProgressBar) mActivity.findViewById(R.id.loading_indicator);
 
         mLinearLayoutManager = new LinearLayoutManager(mActivity.getApplicationContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        mNewsRecyclerViewAdapter= new NewsRecyclerViewAdapter();
-        mNewsRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
-        mRecyclerView.setAdapter(mNewsRecyclerViewAdapter);
+        mTimelineRecyclerViewAdapter = new TimelineRecyclerViewAdapter();
+        mTimelineRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
+        mTimelineRecyclerViewAdapter.setLoaderDividerColor(getResources().getColor(R.color.item_separator));
+        mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
         // todo customize animations extending RecyclerView.ItemAnimator class
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -102,22 +104,22 @@ public class NewsFragment extends Fragment {
     }
 
     private void initApiConnection() {
-        mNewsService = TrainingApp.getRestAdapter().create(NewsService.class);
+        mNewsService = VoltFeedApp.getRestAdapter().create(NewsService.class);
     }
 
     private void populateUi() {
         mProgressBar.setVisibility(View.GONE);
         mFab.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setVisibility(View.VISIBLE);
-        if (mNewsRecyclerViewAdapter != null
-            && mNewsRecyclerViewAdapter.getItemCount() > 0)
+        if (mTimelineRecyclerViewAdapter != null
+            && mTimelineRecyclerViewAdapter.getItemCount() > 0)
                 displayNoNews(false);
         else displayNoNews(true);
     }
 
     private void displayNoNews(boolean state) {
-        if (state) mNoNewsHolder.setVisibility(View.VISIBLE);
-        else mNoNewsHolder.setVisibility(View.GONE);
+        if (state) mNoPostsHolder.setVisibility(View.VISIBLE);
+        else mNoPostsHolder.setVisibility(View.GONE);
     }
 
     private void displayNoInternet(boolean state) {
@@ -143,8 +145,8 @@ public class NewsFragment extends Fragment {
         mHandler.post(new Runnable() {
             public void run(){
                 //change adapter contents
-                if (state) mNewsRecyclerViewAdapter.pushLoadingRow();
-                else mNewsRecyclerViewAdapter.popLoadingRow();
+                if (state) mTimelineRecyclerViewAdapter.addLoadingRow();
+                else mTimelineRecyclerViewAdapter.removeLoadingRow();
             }
         });
     }
@@ -152,8 +154,8 @@ public class NewsFragment extends Fragment {
     private void doGetNews() {
         mNewsLoading = true;
         mNewsService.getNews(
-                mActualPage * Config.NEWSFEED_PAGE_SIZE + 1,
-                Config.NEWSFEED_PAGE_SIZE,
+                mActualPage * Config.FEED_PAGE_SIZE + 1,
+                Config.FEED_PAGE_SIZE,
                 mGetNewsCallback);
         mActualPage ++;
     }
@@ -190,7 +192,7 @@ public class NewsFragment extends Fragment {
 
     // ** ANONYMOUS CLASSES **
 
-    NewsRecyclerViewAdapter.OnViewHolderListener mViewHolderListener = new NewsRecyclerViewAdapter.OnViewHolderListener() {
+    TimelineRecyclerViewAdapter.OnViewHolderListener mViewHolderListener = new TimelineRecyclerViewAdapter.OnViewHolderListener() {
         @Override
         public void onNextPageRequired() {
             if (!mNewsLoading) {
@@ -215,19 +217,19 @@ public class NewsFragment extends Fragment {
         }
     };
 
-    Callback<NewsRequestAdapter> mGetNewsCallback = new Callback<NewsRequestAdapter>() {
+    Callback<PostsRequestAdapter> mGetNewsCallback = new Callback<PostsRequestAdapter>() {
 
         @Override
-        public void success(NewsRequestAdapter newsRequestAdapter, Response response) {
+        public void success(PostsRequestAdapter postsRequestAdapter, Response response) {
             //set mSwipeRefreshLayout visible BEFORE modifying
             //the recycler adapter to get a smooth animation
             mSwipeRefreshLayout.setVisibility(View.VISIBLE);
-            mNewsRecyclerViewAdapter.addNewsArray(newsRequestAdapter.getResults());
+            mTimelineRecyclerViewAdapter.addPostsToRecycler(postsRequestAdapter.getResults());
             populateUi();
-            if (newsRequestAdapter.getResults().length > 0
-                && mNewsRecyclerViewAdapter.getCurrentPos() == mNewsRecyclerViewAdapter.getItemCount() )
-                    mRecyclerView.smoothScrollToPosition(mNewsRecyclerViewAdapter.getCurrentPos() + 1);
-            if(mNewsLoading) mNewsRecyclerViewAdapter.popLoadingRow();
+            if (postsRequestAdapter.getResults().length > 0
+                && mTimelineRecyclerViewAdapter.getCurrentPosition() == mTimelineRecyclerViewAdapter.getItemCount() )
+                    mRecyclerView.smoothScrollToPosition(mTimelineRecyclerViewAdapter.getCurrentPosition() + 1);
+            if(mNewsLoading) mTimelineRecyclerViewAdapter.removeLoadingRow();
             mNewsLoading = false;
             setLoadingRowFromBackground(false);
         }

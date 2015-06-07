@@ -1,4 +1,4 @@
-package com.droidko.voltfeed.ui;
+package com.droidko.voltfeed.ui.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.droidko.voltfeed.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-public class NewsRowViewHolder extends RecyclerView.ViewHolder {
+public class TimelinePostViewHolder extends RecyclerView.ViewHolder {
 
     public TextView mTitle;
     public TextView mContent;
@@ -18,7 +18,7 @@ public class NewsRowViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolderClicks mListener;
 
-    public NewsRowViewHolder(View itemLayoutView, ViewHolderClicks viewHolderClicks) {
+    public TimelinePostViewHolder(View itemLayoutView, ViewHolderClicks viewHolderClicks) {
         super(itemLayoutView);
         this.mTitle = (TextView) itemLayoutView.findViewById(R.id.item_title);
         this.mContent = (TextView) itemLayoutView.findViewById(R.id.item_content);

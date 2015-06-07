@@ -1,10 +1,10 @@
-package com.droidko.voltfeed.ui;
+package com.droidko.voltfeed.ui.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.droidko.voltfeed.fragments.NewsFragment;
+import com.droidko.voltfeed.fragments.TimelineFragment;
 import com.droidko.voltfeed.fragments.ProfileFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -31,8 +31,8 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         // position == 0: left tab
         if(position == 0) {
-            NewsFragment newsFragment = new NewsFragment();
-            return newsFragment;
+            TimelineFragment timelineFragment = new TimelineFragment();
+            return timelineFragment;
         } else {
             // position != 0: right tab (this could be changed to allow more tabs
             // if necessary)

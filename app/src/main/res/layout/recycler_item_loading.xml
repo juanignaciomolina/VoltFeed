@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="64dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/recycler_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/recycler_divider"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <ProgressBar
+            android:id="@+id/loading_indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="28dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyle"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

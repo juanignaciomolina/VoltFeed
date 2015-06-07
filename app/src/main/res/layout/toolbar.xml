@@ -18,6 +18,7 @@
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     </android.support.v7.widget.Toolbar>

@@ -1,10 +1,12 @@
 package com.droidko.voltfeed.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -117,4 +119,20 @@ public class UiHelper {
         textView.setTypeface(sFontVarela);
     }
 
+    public static boolean canRunLollipopFx() {
+        return (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                && Config.LOLLIPOP_FX_ENABLED;
+    }
+
+    @SuppressLint("NewApi")
+    public static void renderElevation(int elevation, View view) {
+        if (!canRunLollipopFx()) return;
+        view.setElevation(elevation);
+    }
+
+    public static void renderElevation(int elevation, View... views) {
+        for (View view : views) {
+            renderElevation(elevation, view);
+        }
+    }
 }

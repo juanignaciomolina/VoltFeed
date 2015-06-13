@@ -26,7 +26,7 @@ import com.parse.ParseException;
 
 public class UiHelper {
 
-    private static Typeface sFontVarela = Typeface.createFromAsset(
+    private static final Typeface sFontVarela = Typeface.createFromAsset(
             VoltfeedApp.getInstance().getAssets(), "VarelaRound-Regular.otf");
 
     public static Toolbar setToolbar(ActionBarActivity activity,

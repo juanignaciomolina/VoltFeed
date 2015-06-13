@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
-    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:context=".loginActivity">
 
     <ImageView
@@ -49,7 +48,9 @@
                 <EditText
                     android:id="@+id/signup_username"
                     style="@style/editText.regular"
-                    android:hint="@string/login_username"/>
+                    android:hint="@string/login_username"
+                    android:singleLine="true"
+                    android:maxLength="32"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -59,7 +60,9 @@
                     android:id="@+id/login_password"
                     style="@style/editText.regular"
                     android:inputType="textPassword"
-                    android:hint="@string/login_password"/>
+                    android:hint="@string/login_password"
+                    android:singleLine="true"
+                    android:maxLength="32"/>
             </android.support.design.widget.TextInputLayout>
             <Button
                 android:id="@+id/login_btn_login"

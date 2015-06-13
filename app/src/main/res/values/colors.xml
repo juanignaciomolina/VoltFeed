@@ -1,24 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- TESTING COLORS -->
+    <color name="test_gray" type="color">#FFEEEEEE</color>
+    <color name="test_gray_2" type="color">#FFECECEC</color>
+    <color name="test_gray_3" type="color">#FFecf0f1</color>
+    <color name="test_honey" type="color">#FFFDE3A7</color>
+    <color name="test_alice" type="color">#FFE4F1FE</color>
+    <color name="test_flamingo" type="color">#FFEF4836</color>
+    <color name="test_fuxia" type="color">#FFDB0A5B</color>
+    <color name="test_chicle" type="color">#FFF62459</color>
+    <color name="test_flower" type="color">#FF674172</color>
+    <color name="test_red_pastel" type="color">#FFF64747</color>
+
     <!-- Colors used in the app -->
-    <color name="ColorPrimary" type="color">#FF663399</color>
-    <color name="ColorPrimaryDark" type="color">#FFDB0A5B</color>
-    <color name="accent" type="color">#FFF62459</color>
+    <color name="ColorPrimary" type="color">#FFE83151</color>
+    <color name="ColorPrimaryDark" type="color">#FFd02c48</color>
+    <color name="navigationBarColor" type="color">#FF398FB8</color>
+    <color name="accent" type="color">#FF398FB8</color>
+    <color name="timeline_background">#FFECF0F1</color>
 
-    <color name="tabsScrollColor">#FFF62459</color>
+    <color name="tabsScrollColor">#FFFFBF00</color>
+    <color name="tabsTextColor">#FFFFBF00</color>
+    <color name="tabsTextColor_selected">#FFFFFFFF</color>
+    <color name="progressBar">#FF3A9E67</color>
 
-    <color name="fab">#FFDB0A5B</color>
-    <color name="fab_pressed">#FFF62459</color>
-    <color name="fab_ripple" type="color">#FF663399</color>
+    <color name="fab">#FFFFBF00</color>
+    <color name="fab_pressed">#FFE83151</color>
+    <color name="fab_ripple" type="color">#FF398FB8</color>
 
     <item name="btn_blue" type="color">#FF33B5E5</item>
     <item name="btn_regular" type="color">#FFFFFFFF</item>
     <item name="btn_border_gray" type="color">#FFE6E6E4</item>
 
-    <item name="action_bar_gray" type="color">#FF663399</item>
+    <item name="action_bar_gray" type="color">#FFE83151</item>
 
     <item name="item_separator" type="color">#FFE6E6E4</item>
+
+    <!-- Posts colors-->
+    <color name="post_thought" type="color">#FFDB0A5B</color>
+    <color name="post_image" type="color">#FF4B77BE</color>
+    <color name="post_background">#FFF4FFF8</color>
+
+    <!-- Profile colors-->
+    <color name="profile_btn_follow">#FFE83151</color>
+    <color name="profile_font_color_1">#FF3C213A</color>
+    <color name="profile_font_color_2">#FFE83151</color>
+    <color name="profile_font_color_3">#FFF4FFF8</color>
+    <color name="profile_gradient_start">#96000000</color>
+    <color name="profile_gradient_center">#48000000</color>
+    <color name="profile_background">#FFECF0F1</color>
 
     <item name="voltfeed_green" type="color">#FF99CC00</item>
     <item name="voltfeed_green_dark" type="color">#FF88B85E</item>
@@ -32,6 +63,7 @@
     <item name="recycler_divider" type="color">#AAA</item>
 
     <!-- Useful colors -->
+    <item name="transparent" type="color">#00000000</item>
     <item name="white" type="color">#FFFFFFFF</item>
     <item name="black" type="color">#FF000000</item>
     <item name="gray" type="color">#FFE6E6E4</item>

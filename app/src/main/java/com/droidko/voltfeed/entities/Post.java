@@ -1,81 +1,100 @@
 package com.droidko.voltfeed.entities;
 
+import com.droidko.voltfeed.Schema;
+import com.parse.ParseObject;
+
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by juan on 31/03/15.
  */
 public class Post {
 
-    private String id;
-    private String[] likes;
-    private String picture;
-    private String text;
-    private String title;
-    private String userId;
-    private String createdAt;
-    private String updatedAt;
+    //Values
+    private String mId;
+    private String[] mLikes;
+    private String mPicture;
+    private String mText;
+    private String mTitle;
+    private String mUserId;
+    private Date mCreatedAt;
+    private Date mUpdatedAt;
+
+    public Post(ParseObject parseObject) {
+        setId(parseObject.getObjectId());
+        List likesList = (List) parseObject.get(Schema.POST_COL_LIKES);
+        //setLikes( (String[]) (likesList.toArray(new String[likesList.size()]) ) );
+        setPicture(parseObject.getString(Schema.POST_COL_PICTURE));
+        setText(parseObject.getString(Schema.POST_COL_TEXT));
+        setTitle(parseObject.getString(Schema.POST_COL_TITLE));
+        setUserId(parseObject.getString(Schema.POST_COL_USER_ID));
+        setCreatedAt(parseObject.getCreatedAt());
+        setUpdatedAt(parseObject.getUpdatedAt());
+    }
 
     public String getId() {
-        return id;
+        return mId;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.mId = id;
     }
 
     public String[] getLikes() {
-        return likes;
+        return mLikes;
     }
 
     public void setLikes(String[] likes) {
-        this.likes = likes;
+        this.mLikes = likes;
     }
 
     public String getPicture() {
-        return picture;
+        return mPicture;
     }
 
     public void setPicture(String picture) {
-        this.picture = picture;
+        this.mPicture = picture;
     }
 
     public String getText() {
-        return text;
+        return mText;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.mText = text;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.mTitle = title;
     }
 
     public String getUserId() {
-        return userId;
+        return mUserId;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.mUserId = userId;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public Date getCreatedAt() {
+        return mCreatedAt;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedAt(Date createdAt) {
+        this.mCreatedAt = createdAt;
     }
 
-    public String getUpdatedAt() {
-        return updatedAt;
+    public Date getUpdatedAt() {
+        return mUpdatedAt;
     }
 
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUpdatedAt(Date updatedAt) {
+        this.mUpdatedAt = updatedAt;
     }
 
 }

@@ -12,7 +12,7 @@ public class ConnectingDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
 
-        ProgressDialog dialog = new ProgressDialog(getActivity());
+        ProgressDialog dialog = new ProgressDialog(getActivity(), R.style.DialogStyle);
         dialog.setMessage(getActivity().getString(R.string.progressdialog_connecting));
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);

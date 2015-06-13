@@ -106,6 +106,7 @@ public class MainActivity extends VoltfeedActivity {
             finish();
         }
     }
+
     // ** EVENT BUS **
 
     public class LogInEvent { }

@@ -28,7 +28,9 @@
                 android:id="@+id/signup_username"
                 style="@style/editText.regular"
                 android:inputType="textEmailAddress"
-                android:hint="@string/signup_username"/>
+                android:hint="@string/signup_username"
+                android:singleLine="true"
+                android:maxLength="32"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -38,7 +40,9 @@
                 android:id="@+id/signup_email"
                 style="@style/editText.regular"
                 android:inputType="textEmailAddress"
-                android:hint="@string/signup_email"/>
+                android:hint="@string/signup_email"
+                android:singleLine="true"
+                android:maxLength="64"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -48,7 +52,9 @@
                 android:id="@+id/login_password"
                 style="@style/editText.regular"
                 android:inputType="textPassword"
-                android:hint="@string/signup_password"/>
+                android:hint="@string/signup_password"
+                android:singleLine="true"
+                android:maxLength="32"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -58,7 +64,9 @@
                 android:id="@+id/signup_password_confirm"
                 style="@style/editText.regular"
                 android:inputType="textPassword"
-                android:hint="@string/signup_confirm_password"/>
+                android:hint="@string/signup_confirm_password"
+                android:singleLine="true"
+                android:maxLength="32"/>
         </android.support.design.widget.TextInputLayout>
 
         <include

@@ -82,13 +82,14 @@ public class TimelineFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mTimelineRecyclerViewAdapter = new TimelineRecyclerViewAdapter();
         mTimelineRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
-        mTimelineRecyclerViewAdapter.setLoaderDividerColor(getResources().getColor(R.color.item_separator));
+        mTimelineRecyclerViewAdapter
+                .setLoaderDividerColor(getResources().getColor(R.color.item_separator));
         mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
         // todo customize animations extending RecyclerView.ItemAnimator class
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mFab.attachToRecyclerView(mRecyclerView); //this is for the mFab animation
         mFab.setOnClickListener(mFabClickListener);
+        //mFab.attachToRecyclerView(mRecyclerView);
 
         mSwipeRefreshLayout.setOnRefreshListener(mSwipeRefreshListener);
     }

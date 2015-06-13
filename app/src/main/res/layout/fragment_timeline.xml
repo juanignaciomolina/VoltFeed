@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:background="@color/timeline_background">
+    android:background="@color/timeline_background"
+    xmlns:app="http://schemas.android.com/tools">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
@@ -15,7 +16,8 @@
             android:id="@+id/recycler_view_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical"
+            />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -31,7 +33,8 @@
         fab:fab_colorNormal="@color/fab"
         fab:fab_colorPressed="@color/fab_pressed"
         fab:fab_colorRipple="@color/fab_ripple"
-        android:src="@drawable/ic_add_white"/>
+        android:src="@drawable/ic_add_white"
+        app:layout_scrollFlags="scroll|enterAlways"/>
 
     <LinearLayout
         android:id="@+id/no_news_holder"

@@ -1,7 +1,5 @@
 package com.droidko.voltfeed.ui.widget.RecyclerView.modules;
 
-import android.util.Log;
-
 import com.droidko.voltfeed.ui.widget.RecyclerView.RecyclerAdapter;
 import com.droidko.voltfeed.ui.widget.RecyclerView.RecyclerItem;
 
@@ -37,7 +35,6 @@ public class ModUtils<E extends RecyclerItem> {
             }
             itemsList.set(i, valueToInsert);
         } else itemsList.add(valueToInsert);
-        Log.d("Loaders array +", String.valueOf(itemsList));
         return i;
     }
 
@@ -49,7 +46,6 @@ public class ModUtils<E extends RecyclerItem> {
             }
             itemsList.remove(positionToRemove);
         } else return -1;
-        Log.d("Loaders array -", String.valueOf(itemsList));
         return positionToRemove;
     }
     //** End of UTILS MODULE methods **

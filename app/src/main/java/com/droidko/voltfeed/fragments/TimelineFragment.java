@@ -16,25 +16,21 @@ import android.widget.ProgressBar;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
-import com.droidko.voltfeed.VoltFeedApp;
+import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.activities.MainActivity;
-import com.droidko.voltfeed.api.NewsService;
-import com.droidko.voltfeed.api.PostsRequestAdapter;
-import com.droidko.voltfeed.entities.TimelineRow;
-import com.droidko.voltfeed.entities.User;
 import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.melnykov.fab.FloatingActionButton;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
-import de.greenrobot.event.EventBus;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import java.util.List;
 
 public class TimelineFragment extends Fragment {
 
     private Activity mActivity;
-    private NewsService mNewsService;
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -46,7 +42,6 @@ public class TimelineFragment extends Fragment {
     private TimelineRecyclerViewAdapter mTimelineRecyclerViewAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
-    private User mUser;
     private int mActualPage = 0;
     private boolean mNewsLoading = false;
 
@@ -63,21 +58,8 @@ public class TimelineFragment extends Fragment {
         mActivity = getActivity();
 
         initUi();
-        initApiConnection();
-
         setLoadingUi();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
+        doGetNews();
     }
 
     private void initUi() {
@@ -87,6 +69,14 @@ public class TimelineFragment extends Fragment {
         mNoPostsHolder = (LinearLayout) mActivity.findViewById(R.id.no_news_holder);
         mNoInternetHolder = (LinearLayout) mActivity.findViewById(R.id.no_internet_holder);
         mProgressBar = (ProgressBar) mActivity.findViewById(R.id.loading_indicator);
+
+        mSwipeRefreshLayout.setColorSchemeResources(
+                R.color.ColorPrimaryDark,
+                R.color.ColorPrimary);
+
+        mProgressBar.getIndeterminateDrawable().setColorFilter(
+                getResources().getColor(R.color.progressBar),
+                android.graphics.PorterDuff.Mode.SRC_IN);
 
         mLinearLayoutManager = new LinearLayoutManager(mActivity.getApplicationContext());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -103,21 +93,17 @@ public class TimelineFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(mSwipeRefreshListener);
     }
 
-    private void initApiConnection() {
-        mNewsService = VoltFeedApp.getRestAdapter().create(NewsService.class);
-    }
-
     private void populateUi() {
         mProgressBar.setVisibility(View.GONE);
         mFab.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setVisibility(View.VISIBLE);
         if (mTimelineRecyclerViewAdapter != null
             && mTimelineRecyclerViewAdapter.getItemCount() > 0)
-                displayNoNews(false);
-        else displayNoNews(true);
+                displayNoPosts(false);
+        else displayNoPosts(true);
     }
 
-    private void displayNoNews(boolean state) {
+    private void displayNoPosts(boolean state) {
         if (state) mNoPostsHolder.setVisibility(View.VISIBLE);
         else mNoPostsHolder.setVisibility(View.GONE);
     }
@@ -126,14 +112,13 @@ public class TimelineFragment extends Fragment {
         if (state) {
             mNoInternetHolder.setVisibility(View.VISIBLE);
             mProgressBar.setVisibility(View.GONE);
-        }
-        else mNoInternetHolder.setVisibility(View.GONE);
+        } else mNoInternetHolder.setVisibility(View.GONE);
     }
 
     private void setLoadingUi() {
         mSwipeRefreshLayout.setVisibility(View.GONE);
         mFab.setVisibility(View.GONE);
-        displayNoNews(false);
+        displayNoPosts(false);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
@@ -153,10 +138,11 @@ public class TimelineFragment extends Fragment {
 
     private void doGetNews() {
         mNewsLoading = true;
-        mNewsService.getNews(
-                mActualPage * Config.FEED_PAGE_SIZE + 1,
-                Config.FEED_PAGE_SIZE,
-                mGetNewsCallback);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(Schema.POST_TABLE_NAME);
+        query.orderByDescending(Schema.COL_CREATED_AT);
+        query.setSkip(mActualPage * Config.FEED_PAGE_SIZE + 1);
+        query.setLimit(Config.FEED_PAGE_SIZE);
+        query.findInBackground(mGetPostsCallback);
         mActualPage ++;
     }
 
@@ -178,13 +164,8 @@ public class TimelineFragment extends Fragment {
 
     // ** EVENT BUS **
 
-    public void onEvent(MainActivity.LogInEvent event){
-        this.mUser = event.mUser;
-        doGetNews();
-    }
-
     public void onEvent(MainActivity.NoInternetEvent event){
-        displayNoNews(false);
+        displayNoPosts(false);
         displayNoInternet(true);
     }
 
@@ -217,26 +198,26 @@ public class TimelineFragment extends Fragment {
         }
     };
 
-    Callback<PostsRequestAdapter> mGetNewsCallback = new Callback<PostsRequestAdapter>() {
-
+    FindCallback<ParseObject> mGetPostsCallback = new FindCallback<ParseObject>() {
         @Override
-        public void success(PostsRequestAdapter postsRequestAdapter, Response response) {
-            //set mSwipeRefreshLayout visible BEFORE modifying
-            //the recycler adapter to get a smooth animation
-            mSwipeRefreshLayout.setVisibility(View.VISIBLE);
-            mTimelineRecyclerViewAdapter.addPostsToRecycler(postsRequestAdapter.getResults());
-            populateUi();
-            if (postsRequestAdapter.getResults().length > 0
-                && mTimelineRecyclerViewAdapter.getCurrentPosition() == mTimelineRecyclerViewAdapter.getItemCount() )
+        public void done(List<ParseObject> list, ParseException e) {
+            if (e == null) {
+                //set mSwipeRefreshLayout visible BEFORE modifying
+                //the recycler adapter to get a smooth animation
+                mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+                mTimelineRecyclerViewAdapter.addPostsToRecycler(list);
+                populateUi();
+                if (list.size() > 0
+                        && mTimelineRecyclerViewAdapter.getCurrentPosition() == mTimelineRecyclerViewAdapter.getItemCount() )
                     mRecyclerView.smoothScrollToPosition(mTimelineRecyclerViewAdapter.getCurrentPosition() + 1);
+            } else {
+                //Error 100: No internet
+                if (e.getCode() == 100 && mActualPage > 1) displayNoInternet(true);
+                else UiHelper.showParseError(mActivity, e);
+            }
             if(mNewsLoading) mTimelineRecyclerViewAdapter.removeLoadingRow();
             mNewsLoading = false;
             setLoadingRowFromBackground(false);
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            UiHelper.showToast(mActivity, error.getMessage());
         }
     };
 

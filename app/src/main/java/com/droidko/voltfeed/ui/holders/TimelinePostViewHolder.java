@@ -6,25 +6,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.droidko.voltfeed.R;
-import com.makeramen.roundedimageview.RoundedImageView;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class TimelinePostViewHolder extends RecyclerView.ViewHolder {
 
     public TextView mTitle;
     public TextView mContent;
-    public RoundedImageView mImage;
+    public ImageView mPostIcon;
     public ImageView mLike;
     public TextView mDate;
+    public SimpleDraweeView mPicture;
 
     public ViewHolderClicks mListener;
 
     public TimelinePostViewHolder(View itemLayoutView, ViewHolderClicks viewHolderClicks) {
         super(itemLayoutView);
-        this.mTitle = (TextView) itemLayoutView.findViewById(R.id.item_title);
-        this.mContent = (TextView) itemLayoutView.findViewById(R.id.item_content);
-        this.mImage = (RoundedImageView) itemLayoutView.findViewById(R.id.item_image);
-        this.mLike = (ImageView) itemLayoutView.findViewById(R.id.item_like);
-        this.mDate = (TextView) itemLayoutView.findViewById(R.id.item_date);
+        this.mTitle = (TextView) itemLayoutView.findViewById(R.id.timeline_post_title);
+        this.mContent = (TextView) itemLayoutView.findViewById(R.id.timeline_post_content);
+        this.mPostIcon = (ImageView) itemLayoutView.findViewById(R.id.timeline_post_icon);
+        this.mLike = (ImageView) itemLayoutView.findViewById(R.id.timeline_post_like);
+        this.mDate = (TextView) itemLayoutView.findViewById(R.id.timeline_post_date);
+        this.mPicture = (SimpleDraweeView) itemLayoutView.findViewById(R.id.timeline_post_picture);
 
         this.mListener = viewHolderClicks;
 

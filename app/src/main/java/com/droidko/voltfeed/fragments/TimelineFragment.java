@@ -1,6 +1,5 @@
 package com.droidko.voltfeed.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +18,7 @@ import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.activities.MainActivity;
 import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
+import com.droidko.voltfeed.ui.QuickReturnAnimation;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.FindCallback;
@@ -30,7 +30,7 @@ import java.util.List;
 
 public class TimelineFragment extends Fragment {
 
-    private Activity mActivity;
+    private MainActivity mActivity;
 
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -55,7 +55,7 @@ public class TimelineFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mActivity = getActivity();
+        mActivity = (MainActivity) getActivity();
 
         initUi();
         setLoadingUi();
@@ -91,7 +91,13 @@ public class TimelineFragment extends Fragment {
         mFab.setOnClickListener(mFabClickListener);
         //mFab.attachToRecyclerView(mRecyclerView);
 
-        mSwipeRefreshLayout.setOnRefreshListener(mSwipeRefreshListener);
+        QuickReturnAnimation quickReturnAnimation = new QuickReturnAnimation(
+                mActivity.getQuickReturnWrapper(),
+                mActivity.getToolbar(),
+                mActivity.getTabs());
+        mRecyclerView.addOnScrollListener(quickReturnAnimation);
+        mFab.attachToRecyclerView(mRecyclerView);
+
     }
 
     private void populateUi() {

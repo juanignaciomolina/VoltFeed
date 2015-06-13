@@ -19,6 +19,7 @@ public class Config {
     public static final String LOG_ERROR = "VF - Error: ";
 
     //UI
+    public static final boolean LOLLIPOP_FX_ENABLED = true;
     public static final int UI_TOOLBAR_ELEVATION = 10;
     public static final int UI_TABS_ELEVATION = 8;
 

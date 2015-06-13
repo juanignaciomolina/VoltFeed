@@ -1,9 +1,9 @@
 package com.droidko.voltfeed.activities;
 
-import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
@@ -18,9 +18,22 @@ public class MainActivity extends VoltfeedActivity {
     private ViewPager mPager;
     private ViewPagerAdapter mAdapter;
     private SlidingTabLayout mTabs;
+    private LinearLayout mQuickReturnWrapper;
     private int mNumbOfTabs = 2;
     private CharSequence mTitles[] = new CharSequence[mNumbOfTabs];
     private int mImageResources[] = new int[mNumbOfTabs];
+
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
+    public SlidingTabLayout getTabs() {
+        return mTabs;
+    }
+
+    public LinearLayout getQuickReturnWrapper() {
+        return mQuickReturnWrapper;
+    }
 
     @Override
     protected void initFragments() {
@@ -36,6 +49,7 @@ public class MainActivity extends VoltfeedActivity {
     protected void setUi() {
         mPager = (ViewPager) findViewById(R.id.pager);
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        mQuickReturnWrapper = (LinearLayout) findViewById(R.id.quickreturn_wrapper);
 
         mToolbar = UiHelper.setToolbar(
                 this,
@@ -48,10 +62,10 @@ public class MainActivity extends VoltfeedActivity {
         //If the OS version is LOLLIPOP or higher we use the elevation attribute,
         //otherwise we use a fake elevation with a degrade image. We have to do this
         //because the SlidingTabLayouts aren't compatible with elevation pre LOLLIPOP
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (UiHelper.canRunLollipopFx()) {
             findViewById(R.id.support_elevation).setVisibility(View.GONE);
-            mToolbar.setElevation(Config.UI_TOOLBAR_ELEVATION);
-            mTabs.setElevation(Config.UI_TABS_ELEVATION);
+            UiHelper.renderElevation(Config.UI_TOOLBAR_ELEVATION, mToolbar);
+            UiHelper.renderElevation(Config.UI_TABS_ELEVATION, mTabs);
         } else {
             getSupportActionBar().setElevation(0);
             findViewById(R.id.support_elevation).setVisibility(View.VISIBLE);

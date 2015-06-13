@@ -16,8 +16,9 @@
             android:id="@+id/recycler_view_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            />
+            android:scrollbars="none"
+            android:paddingTop="104dp"
+            android:clipToPadding="false"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

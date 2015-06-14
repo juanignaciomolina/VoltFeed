@@ -83,7 +83,7 @@ public class TimelineFragment extends Fragment {
         mTimelineRecyclerViewAdapter = new TimelineRecyclerViewAdapter();
         mTimelineRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
         mTimelineRecyclerViewAdapter
-                .setLoaderDividerColor(getResources().getColor(R.color.item_separator));
+                .setLoaderDividerColor(getResources().getColor(R.color.timeline_item_separator));
         mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
         // todo customize animations extending RecyclerView.ItemAnimator class
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

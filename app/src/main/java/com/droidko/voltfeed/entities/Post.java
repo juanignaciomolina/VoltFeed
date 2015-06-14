@@ -13,6 +13,7 @@ public class Post {
 
     //Values
     private String mId;
+    private int type;
     private String[] mLikes;
     private String mPicture;
     private String mText;
@@ -23,6 +24,7 @@ public class Post {
 
     public Post(ParseObject parseObject) {
         setId(parseObject.getObjectId());
+        setType(parseObject.getInt(Schema.POST_COL_TYPE));
         List likesList = (List) parseObject.get(Schema.POST_COL_LIKES);
         //setLikes( (String[]) (likesList.toArray(new String[likesList.size()]) ) );
         setPicture(parseObject.getString(Schema.POST_COL_PICTURE));
@@ -39,6 +41,14 @@ public class Post {
 
     public void setId(String id) {
         this.mId = id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String[] getLikes() {

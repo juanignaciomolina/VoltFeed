@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/post">
+
+        <LinearLayout
+            android:id="@+id/timeline_post_idea_header"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:orientation="horizontal"
+            android:background="@drawable/post_header_idea"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginBottom="8dp">
+
+            <!-- date -->
+            <TextView
+                android:id="@+id/timeline_post_idea_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/font_light"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="15m"
+                android:gravity="right|end|center"
+                android:singleLine="true"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timeline_post_idea_container"
+            android:layout_below="@id/timeline_post_idea_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- post type image -->
+                <ImageView
+                    android:id="@+id/timeline_idea_icon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/ic_post_thought"/>
+
+                <!-- content -->
+                <TextView
+                    android:id="@+id/timeline_post_idea_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="16sp"
+                    android:text="I'll be in your neighborhood doing errands..."
+                    android:minLines="2"
+                    android:maxLines="5"
+                    android:ellipsize="end"/>
+
+            </LinearLayout>
+
+            <!-- fav icon-->
+            <ImageView
+                android:id="@+id/timeline_post_idea_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/timeline_post_image_picture"
+                android:src="@drawable/likeoff"
+                android:scaleType="fitEnd"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

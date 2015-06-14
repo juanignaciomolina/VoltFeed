@@ -24,7 +24,7 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="@dimen/guideline_yellow"
-            android:background="@color/action_bar_gray"
+            android:background="@color/toolbar_background"
             android:visibility="visible"/>
 
         <ImageView

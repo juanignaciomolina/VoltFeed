@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/post">
+
+        <LinearLayout
+            android:id="@+id/timeline_post_image_header"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:orientation="horizontal"
+            android:background="@drawable/post_header_image"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_marginBottom="8dp">
+
+            <!-- post type image -->
+            <ImageView
+                android:id="@+id/timeline_post_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_margin="4dp"
+                android:contentDescription="avatar image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_post_thought"/>
+
+            <!-- date -->
+            <TextView
+                android:id="@+id/timeline_post_image_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/font_light"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="15m"
+                android:gravity="right|end|center"
+                android:singleLine="true"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timeline_post_image_container"
+            android:layout_below="@id/timeline_post_image_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <!-- title -->
+            <TextView
+                android:id="@+id/timeline_post_image_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text="User Name"
+                android:singleLine="true"
+                android:visibility="visible"/>
+
+            <!-- post picture image -->
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/timeline_post_image_picture"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="post picture"
+                android:scaleType="centerCrop"
+                fresco:roundedCornerRadius="3dp"
+                fresco:roundWithOverlayColor="@color/post_background"
+                fresco:placeholderImage="@drawable/item_news_placeholder"
+                fresco:failureImage="@color/red"/>
+
+            <!-- fav icon-->
+            <ImageView
+                android:id="@+id/timeline_post_image_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/timeline_post_image_picture"
+                android:src="@drawable/likeoff"
+                android:scaleType="fitEnd"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

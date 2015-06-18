@@ -55,5 +55,31 @@
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
+    <style name="post">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:shadowColor">#FF000000</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.2</item>
+        <item name="android:background">@drawable/post_background</item>
+    </style>
+
+    <style name="flatButton">
+        <item name="android:background">@drawable/btn_flat_gray</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:textColor">@color/voltfeed_gray_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="flatText">
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="android:textColor">@color/voltfeed_gray_dark</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 
 </resources>

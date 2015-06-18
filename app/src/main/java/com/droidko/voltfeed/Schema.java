@@ -25,6 +25,7 @@ public class Schema {
     //POSTS
     public static final String POST_TABLE_NAME = "Posts";
     public static final String POST_COL_ID = "id";
+    public static final String POST_COL_TYPE = "type";
     public static final String POST_COL_LIKES = "likes";
     public static final String POST_COL_PICTURE = "picture";
     public static final String POST_COL_TEXT = "text";

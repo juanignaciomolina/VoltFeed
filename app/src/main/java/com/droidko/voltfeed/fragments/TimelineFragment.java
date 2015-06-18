@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,8 +16,8 @@ import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.activities.MainActivity;
-import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
 import com.droidko.voltfeed.ui.QuickReturnAnimation;
+import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.melnykov.fab.FloatingActionButton;
 import com.parse.FindCallback;
@@ -83,10 +82,10 @@ public class TimelineFragment extends Fragment {
         mTimelineRecyclerViewAdapter = new TimelineRecyclerViewAdapter();
         mTimelineRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
         mTimelineRecyclerViewAdapter
-                .setLoaderDividerColor(getResources().getColor(R.color.item_separator));
+                .setLoaderDividerColor(getResources().getColor(R.color.timeline_item_separator));
+
         mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
         // todo customize animations extending RecyclerView.ItemAnimator class
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mFab.setOnClickListener(mFabClickListener);
         //mFab.attachToRecyclerView(mRecyclerView);
@@ -147,7 +146,7 @@ public class TimelineFragment extends Fragment {
         mNewsLoading = true;
         ParseQuery<ParseObject> query = ParseQuery.getQuery(Schema.POST_TABLE_NAME);
         query.orderByDescending(Schema.COL_CREATED_AT);
-        query.setSkip(mActualPage * Config.FEED_PAGE_SIZE + 1);
+        query.setSkip(mActualPage * Config.FEED_PAGE_SIZE);
         query.setLimit(Config.FEED_PAGE_SIZE);
         query.findInBackground(mGetPostsCallback);
         mActualPage ++;

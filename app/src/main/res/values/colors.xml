@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- TESTING COLORS -->
-    <color name="test_gray" type="color">#FFEEEEEE</color>
-    <color name="test_gray_2" type="color">#FFECECEC</color>
-    <color name="test_gray_3" type="color">#FFecf0f1</color>
-    <color name="test_honey" type="color">#FFFDE3A7</color>
-    <color name="test_alice" type="color">#FFE4F1FE</color>
-    <color name="test_flamingo" type="color">#FFEF4836</color>
-    <color name="test_fuxia" type="color">#FFDB0A5B</color>
-    <color name="test_chicle" type="color">#FFF62459</color>
-    <color name="test_flower" type="color">#FF674172</color>
-    <color name="test_red_pastel" type="color">#FFF64747</color>
+    <!-- UI main colors -->
+    <color name="ColorPrimary">#FFE83151</color>
+    <color name="ColorPrimaryDark">#FFd02c48</color>
+    <color name="navigationBarColor">#FF398FB8</color>
+    <color name="accent">#FF398FB8</color>
+    <color name="progressBar">#FF3A9E67</color>
+    <color name="toolbar_background">#FFE83151</color>
 
-    <!-- Colors used in the app -->
-    <color name="ColorPrimary" type="color">#FFE83151</color>
-    <color name="ColorPrimaryDark" type="color">#FFd02c48</color>
-    <color name="navigationBarColor" type="color">#FF398FB8</color>
-    <color name="accent" type="color">#FF398FB8</color>
-    <color name="timeline_background">#FFECF0F1</color>
-
+    <!-- Tabs -->
     <color name="tabsScrollColor">#FFFFBF00</color>
     <color name="tabsTextColor">#FFFFBF00</color>
     <color name="tabsTextColor_selected">#FFFFFFFF</color>
-    <color name="progressBar">#FF3A9E67</color>
 
+    <!-- Buttons -->
+    <color name="btn_blue">#FF33B5E5</color>
+    <color name="btn_regular">#FFFFFFFF</color>
+    <color name="btn_border_gray">#FFE6E6E4</color>
+
+    <!-- Fonts -->
+    <color name="font_light">#FFF4FFF8</color>
+    <color name="font_dark">#FF3C213A</color>
+
+    <!-- FAB -->
     <color name="fab">#FFFFBF00</color>
     <color name="fab_pressed">#FFE83151</color>
-    <color name="fab_ripple" type="color">#FF398FB8</color>
+    <color name="fab_ripple">#FF398FB8</color>
 
-    <item name="btn_blue" type="color">#FF33B5E5</item>
-    <item name="btn_regular" type="color">#FFFFFFFF</item>
-    <item name="btn_border_gray" type="color">#FFE6E6E4</item>
+    <!-- Timeline -->
+    <color name="timeline_background">#FFECF0F1</color>
+    <color name="timeline_item_separator">#FFE6E6E4</color>
 
-    <item name="action_bar_gray" type="color">#FFE83151</item>
-
-    <item name="item_separator" type="color">#FFE6E6E4</item>
-
-    <!-- Posts colors-->
-    <color name="post_thought" type="color">#FFDB0A5B</color>
-    <color name="post_image" type="color">#FF4B77BE</color>
+    <!-- Posts colors -->
+    <color name="post_idea">#FFDB0A5B</color>
+    <color name="post_image">#FF398FB8</color>
     <color name="post_background">#FFF4FFF8</color>
 
-    <!-- Profile colors-->
+    <!-- Profile colors -->
     <color name="profile_btn_follow">#FFE83151</color>
     <color name="profile_font_color_1">#FF3C213A</color>
     <color name="profile_font_color_2">#FFE83151</color>
@@ -51,39 +46,31 @@
     <color name="profile_gradient_center">#48000000</color>
     <color name="profile_background">#FFECF0F1</color>
 
-    <item name="voltfeed_green" type="color">#FF99CC00</item>
-    <item name="voltfeed_green_dark" type="color">#FF88B85E</item>
-    <item name="voltfeed_blue" type="color">#FF33B5E5</item>
-    <item name="voltfeed_blue_dark" type="color">#FF0099CC</item>
-    <item name="voltfeed_gray" type="color">#FFE6E6E4</item>
-    <item name="voltfeed_gray_dark" type="color">#FF989898</item>
-    <item name="voltfeed_red" type="color">#FFEE4136</item>
+    <color name="voltfeed_green">#FF99CC00</color>
+    <color name="voltfeed_green_dark">#FF88B85E</color>
+    <color name="voltfeed_blue">#FF33B5E5</color>
+    <color name="voltfeed_blue_dark">#FF0099CC</color>
+    <color name="voltfeed_gray">#FFE6E6E4</color>
+    <color name="voltfeed_gray_dark">#FF989898</color>
+    <color name="voltfeed_red">#FFEE4136</color>
 
-    <!-- RecyclerView colors-->
-    <item name="recycler_divider" type="color">#AAA</item>
+    <!-- RecyclerView colors -->
+    <color name="recycler_divider" type="color">#AAA</color>
 
     <!-- Useful colors -->
-    <item name="transparent" type="color">#00000000</item>
-    <item name="white" type="color">#FFFFFFFF</item>
-    <item name="black" type="color">#FF000000</item>
-    <item name="gray" type="color">#FFE6E6E4</item>
-    <item name="blue" type="color">#FF33B5E5</item>
-    <item name="purple" type="color">#FFAA66CC</item>
-    <item name="green" type="color">#FF99CC00</item>
-    <item name="orange" type="color">#FFFFBB33</item>
-    <item name="red" type="color">#FFFF4444</item>
-    <item name="darkblue" type="color">#FF0099CC</item>
-    <item name="darkpurple" type="color">#FF9933CC</item>
-    <item name="darkgreen" type="color">#FF669900</item>
-    <item name="darkorange" type="color">#FFFF8800</item>
-    <item name="darkred" type="color">#FFCC0000</item>
-
-    <!-- Fonts colors proposed by the design guidelines -->
-    <item name="guideline_roboto_medium" type="color">#FF3BAFDA</item>
-    <item name="guideline_roboto_regular_1" type="color">#FF4D4D4D</item>
-    <item name="guideline_roboto_regular_2" type="color">#FFBBBCBE</item>
-    <item name="guideline_roboto_regular_3" type="color">#FF989898</item>
-    <item name="guideline_roboto_regular_4" type="color">#FF989898</item>
-    <item name="guideline_roboto_regular_5" type="color">#FF989898</item>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="gray">#FFE6E6E4</color>
+    <color name="blue">#FF33B5E5</color>
+    <color name="purple">#FFAA66CC</color>
+    <color name="green">#FF99CC00</color>
+    <color name="orange">#FFFFBB33</color>
+    <color name="red">#FFFF4444</color>
+    <color name="darkblue">#FF0099CC</color>
+    <color name="darkpurple">#FF9933CC</color>
+    <color name="darkgreen">#FF669900</color>
+    <color name="darkorange">#FFFF8800</color>
+    <color name="darkred">#FFCC0000</color>
 
 </resources>

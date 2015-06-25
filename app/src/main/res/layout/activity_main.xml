@@ -20,11 +20,11 @@
             android:id="@+id/main_toolbar"
             layout="@layout/toolbar"/>
 
-        <com.droidko.voltfeed.ui.widget.SlidingTabLayout
+        <com.droidko.voltfeed.ui.widget.SlidingTabs.SlidingTabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="@dimen/guideline_yellow"
-            android:background="@color/toolbar_background"
+            android:background="@color/tabs_background"
             android:visibility="visible"/>
 
         <ImageView
@@ -34,5 +34,10 @@
             android:src="@drawable/support_elevation"/>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_overlay_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

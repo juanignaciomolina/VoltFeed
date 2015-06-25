@@ -43,4 +43,8 @@
     <string name="error_session_expired">Session expired. Please Log In again</string>
     <string name="error_connection_unknown">Unknown connection error</string>
     <string name="error_unknown">Ups! Something went wrong, try again later</string>
+
+    <!-- FULL SCREEN IMAGE ACTIVITY -->
+    <string name="title_activity_fullscreen_image">Voltfeed</string>
+    <string name="dummy_button">Dummy Button</string>
 </resources>

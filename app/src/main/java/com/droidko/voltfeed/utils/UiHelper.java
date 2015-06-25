@@ -5,8 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -19,17 +19,13 @@ import android.widget.Toast;
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.VoltfeedApp;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
+import com.droidko.voltfeed.activities.VoltfeedActivity;
 import com.parse.ParseException;
 
 public class UiHelper {
 
     private static final Typeface sFontVarela = Typeface.createFromAsset(
-            VoltfeedApp.getInstance().getAssets(), "VarelaRound-Regular.otf");
+            VoltfeedApp.getContextInstance().getAssets(), "VarelaRound-Regular.otf");
 
     public static Toolbar setToolbar(ActionBarActivity activity,
                                      int view_toolbar,
@@ -66,24 +62,6 @@ public class UiHelper {
                 new Intent(localContext, targetActivity).
                         setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK)
         );
-    }
-
-    public static void setProgessiveFrescoImage(SimpleDraweeView draweeView,
-                                                Uri highResUri,
-                                                Uri lowResUri,
-                                                boolean tapToRetry) {
-        draweeView.setVisibility(View.VISIBLE);
-        ImageRequest highResRequest = ImageRequestBuilder.newBuilderWithSource(highResUri)
-                .setLocalThumbnailPreviewsEnabled(true)
-                .setProgressiveRenderingEnabled(true)
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setLowResImageRequest(ImageRequest.fromUri(lowResUri))
-                .setImageRequest(highResRequest)
-                .setTapToRetryEnabled(tapToRetry)
-                .setOldController(draweeView.getController())
-                .build();
-        draweeView.setController(controller);
     }
 
     public static void showParseError(Context context, ParseException e) {
@@ -135,4 +113,30 @@ public class UiHelper {
             renderElevation(elevation, view);
         }
     }
+
+    public static void addFragment(VoltfeedActivity activity,
+                                   int containerId,
+                                   Fragment fragment,
+                                   String tag) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .add(containerId, fragment)
+                .addToBackStack(tag)
+                .commit();
+    }
+
+    public static void removeFragment(VoltfeedActivity activity, Fragment fragment) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .remove(fragment)
+                .commit();
+    }
+
+    protected void replaceFragment(VoltfeedActivity activity, int containerId, Fragment fragment) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerId, fragment)
+                .commit();
+    }
+
 }

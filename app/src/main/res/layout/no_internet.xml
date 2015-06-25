@@ -7,31 +7,13 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/no_internet_image_cel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/no_internet_image_cel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="8dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/cel_no_internet"/>
-
-        <ImageView
-            android:id="@+id/no_internet_image_wifi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/wifi_no_internet"/>
-
-    </LinearLayout>
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_network_error"/>
 
     <TextView
         android:id="@+id/no_internet_text"

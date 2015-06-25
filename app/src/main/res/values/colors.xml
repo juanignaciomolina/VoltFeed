@@ -2,31 +2,37 @@
 <resources>
 
     <!-- UI main colors -->
-    <color name="ColorPrimary">#FFE83151</color>
-    <color name="ColorPrimaryDark">#FFd02c48</color>
-    <color name="navigationBarColor">#FF398FB8</color>
-    <color name="accent">#FF398FB8</color>
-    <color name="progressBar">#FF3A9E67</color>
-    <color name="toolbar_background">#FFE83151</color>
+    <color name="ColorPrimary">#FF1fc29f</color>
+    <color name="ColorPrimaryDark">#FF1bb392</color>
+    <color name="navigationBarColor">#FFf25a6b</color>
+    <color name="accent">#FFf25a6b</color>
+    <color name="progressBar">#FFf25a6b</color>
+    <color name="toolbar_background">#FF2f354d</color>
 
     <!-- Tabs -->
-    <color name="tabsScrollColor">#FFFFBF00</color>
-    <color name="tabsTextColor">#FFFFBF00</color>
+    <color name="tabs_background">#FF20263d</color>
+    <color name="tabsScrollColor">#FFf25a6b</color>
+    <color name="tabsTextColor">#FFf25a6b</color>
     <color name="tabsTextColor_selected">#FFFFFFFF</color>
 
     <!-- Buttons -->
     <color name="btn_blue">#FF33B5E5</color>
     <color name="btn_regular">#FFFFFFFF</color>
     <color name="btn_border_gray">#FFE6E6E4</color>
+    <color name="btn_flat_gray">#FFC4BCC3</color>
 
     <!-- Fonts -->
     <color name="font_light">#FFF4FFF8</color>
     <color name="font_dark">#FF3C213A</color>
 
+    <!-- Placeholders -->
+    <color name="placeholder">#FFE6E6E4</color>
+    <color name="placeholder_content">#FF989898</color>
+
     <!-- FAB -->
-    <color name="fab">#FFFFBF00</color>
-    <color name="fab_pressed">#FFE83151</color>
-    <color name="fab_ripple">#FF398FB8</color>
+    <color name="fab">#FF1fc29f</color>
+    <color name="fab_pressed">#FFf25a6b</color>
+    <color name="fab_ripple">#FF2f354d</color>
 
     <!-- Timeline -->
     <color name="timeline_background">#FFECF0F1</color>
@@ -36,11 +42,12 @@
     <color name="post_idea">#FFDB0A5B</color>
     <color name="post_image">#FF398FB8</color>
     <color name="post_background">#FFF4FFF8</color>
+    <color name="post_date">#FF989898</color>
 
     <!-- Profile colors -->
-    <color name="profile_btn_follow">#FFE83151</color>
-    <color name="profile_font_color_1">#FF3C213A</color>
-    <color name="profile_font_color_2">#FFE83151</color>
+    <color name="profile_btn_follow">#FF2f354d</color>
+    <color name="profile_font_color_1">#FFF4FFF8</color>
+    <color name="profile_font_color_2">#FFf25a6b</color>
     <color name="profile_font_color_3">#FFF4FFF8</color>
     <color name="profile_gradient_start">#96000000</color>
     <color name="profile_gradient_center">#48000000</color>
@@ -72,5 +79,7 @@
     <color name="darkgreen">#FF669900</color>
     <color name="darkorange">#FFFF8800</color>
     <color name="darkred">#FFCC0000</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

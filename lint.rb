@@ -25,9 +25,9 @@ puts 'Linting...'
 out = `java -jar ./check/checkstyle.jar -c ./check/google_checks.xml ./app/src/`
 puts out
 if out == "Starting audit...\nAudit done.\n"
- puts 'Buena!'.green
+ puts 'VOLTED!'.cyan
  exit 0
 else
-  puts 'Pecheaste'.red
+  puts 'A great power comes with a great responsability, check your code brotha'.magenta
   exit 1
 end

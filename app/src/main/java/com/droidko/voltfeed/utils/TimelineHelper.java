@@ -7,13 +7,18 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.entities.Post;
+import com.droidko.voltfeed.events.EventDispatcher;
 import com.droidko.voltfeed.ui.timeline.TimelineIdeaPostViewHolder;
 import com.droidko.voltfeed.ui.timeline.TimelineImagePostViewHolder;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import org.ocpsoft.pretty.time.PrettyTime;
 
@@ -28,13 +33,13 @@ public class TimelineHelper {
             //Case 0: Idea post
             case 0:
                 itemLayoutView = LayoutInflater.from(context)
-                        .inflate(R.layout.timeline_post_idea, null);
+                        .inflate(R.layout.fragment_timeline_post_idea, null);
                 return new TimelineIdeaPostViewHolder(itemLayoutView);
 
             //Case 0: Image post
             case 1:
                 itemLayoutView = LayoutInflater.from(context)
-                        .inflate(R.layout.timeline_post_image, null);
+                        .inflate(R.layout.fragment_timeline_post_image, null);
                 return new TimelineImagePostViewHolder(itemLayoutView);
 
             //Case default: Not a valid post type
@@ -44,7 +49,7 @@ public class TimelineHelper {
 
     }
 
-    public static boolean populateTimelineViewHolder(final Post post,
+    public boolean populateTimelineViewHolder(final Post post,
                                                      RecyclerView.ViewHolder viewHolder) {
         switch (post.getType()) {
 
@@ -58,16 +63,14 @@ public class TimelineHelper {
                         new PrettyTime().format(post.getCreatedAt())
                 );
                 UiHelper.setFontVarela(ideaPostViewHolder.mDate);
-                //populateLikeView(ideaPostViewHolder.mLike);
+                populateLikeView(ideaPostViewHolder.mVoltButton);
 
-                /*
-                ideaPostViewHolder.mLike.setOnClickListener(new View.OnClickListener() {
+                ideaPostViewHolder.mVoltButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(Config.LOG_DEBUG, "On Like Click: " + post.getId());
+                        Log.d(Config.LOG_DEBUG, "On Volt Click: " + post.getId());
                     }
                 });
-                */
 
                 ideaPostViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -89,23 +92,28 @@ public class TimelineHelper {
                 );
                 UiHelper.setFontVarela(imagePostViewHolder.mDate);
                 if (!TextUtils.isEmpty(post.getPicture())) {
-                    Uri uri;
-                    uri = Uri.parse(post.getPicture());
-                    UiHelper.setProgessiveFrescoImage(imagePostViewHolder.mPicture,
-                            uri,
-                            null,
-                            true);
-                }
-                //populateLikeView(imagePostViewHolder.mLike);
+                    final Uri fullResUri;
+                    fullResUri = Uri.parse(post.getPicture());
 
-                /*
-                imagePostViewHolder.mLike.setOnClickListener(new View.OnClickListener() {
+                    loadImageInTimeline(imagePostViewHolder.mPicture,
+                            fullResUri,
+                            null);
+
+                    imagePostViewHolder.mPicture.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            EventDispatcher.dispatchTimelineImageClick(fullResUri.toString(), null);
+                        }
+                    });
+                }
+                populateLikeView(imagePostViewHolder.mVoltButton);
+
+                imagePostViewHolder.mVoltButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(Config.LOG_DEBUG, "On Like Click: " + post.getId());
+                        Log.d(Config.LOG_DEBUG, "On Volt Click: " + post.getId());
                     }
                 });
-                */
 
                 imagePostViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -122,10 +130,31 @@ public class TimelineHelper {
         }
     }
 
-    private static void populateLikeView(ImageView view) {
-        //todo desharcodear esto
-        if (true) view.setImageResource(R.drawable.likeon);
-        else view.setImageResource(R.drawable.likeoff);
+    private static void populateLikeView(View view) {
+        //TODO mostrar el color del boton segun si el usuario volteo el post o no
+    }
+
+    public static void loadImageInTimeline(SimpleDraweeView draweeView,
+                                           Uri highResUri,
+                                           Uri lowResUri) {
+        draweeView.setVisibility(View.VISIBLE);
+
+        //Main request for the image to load
+        ImageRequest highResRequest = ImageRequestBuilder.newBuilderWithSource(highResUri)
+                .setLocalThumbnailPreviewsEnabled(true)
+                .setProgressiveRenderingEnabled(true)
+                .build();
+
+        //Image loader controller
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setLowResImageRequest(ImageRequest.fromUri(lowResUri))
+                .setImageRequest(highResRequest)
+                .setTapToRetryEnabled(true)
+                .setOldController(draweeView.getController())
+                .build();
+
+        //raweeView.setHierarchy(hierarchy);
+        draweeView.setController(controller);
     }
 
 }

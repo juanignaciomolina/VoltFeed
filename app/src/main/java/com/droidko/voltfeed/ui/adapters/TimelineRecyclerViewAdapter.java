@@ -16,6 +16,7 @@ import java.util.List;
 public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
 
     private OnViewHolderListener mOnViewHolderListener;
+    private TimelineHelper mTimelineHelper = new TimelineHelper();
 
     public interface OnViewHolderListener {
         void onNextPageRequired();
@@ -23,8 +24,6 @@ public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
 
     public void setOnViewHolderListener(OnViewHolderListener mOnViewHolderListener) {
         this.mOnViewHolderListener = mOnViewHolderListener;
-
-
     }
 
     // Get item view type (invoked by the customized RecyclerAdapter)
@@ -39,13 +38,13 @@ public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
             ViewGroup parent,
             int viewType) {
 
-        return TimelineHelper.getTimelineViewHolder(viewType, parent.getContext());
+        return mTimelineHelper.getTimelineViewHolder(viewType, parent.getContext());
     }
 
     // Replace the contents of a view (invoked by the RecyclerAdapter)
     @Override
     public void recyclerOnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        TimelineHelper.populateTimelineViewHolder(getItems().get(position).getPost(), viewHolder);
+        mTimelineHelper.populateTimelineViewHolder(getItems().get(position).getPost(), viewHolder);
 
         if (mOnViewHolderListener != null
                 && position == getItemCount() - 1 - Config.FEED_FECTH_THRESHOLD)

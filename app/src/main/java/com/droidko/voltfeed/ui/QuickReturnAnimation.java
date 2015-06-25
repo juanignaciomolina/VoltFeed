@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 
-import com.droidko.voltfeed.ui.widget.SlidingTabLayout;
+import com.droidko.voltfeed.ui.widget.SlidingTabs.SlidingTabLayout;
 
 public class QuickReturnAnimation extends RecyclerView.OnScrollListener {
 

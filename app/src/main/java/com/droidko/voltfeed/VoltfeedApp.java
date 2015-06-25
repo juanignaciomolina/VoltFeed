@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.droidko.voltfeed.activities.MainActivity;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.parse.Parse;
 
@@ -12,6 +13,7 @@ public class VoltfeedApp extends Application {
     private static Context sContext;
     private static SharedPreferences sLogInPreferences;
     private static SharedPreferences.Editor sLogInPreferencesEditor;
+    private static MainActivity sMainActivity;
 
     @Override
     public void onCreate() {
@@ -43,9 +45,11 @@ public class VoltfeedApp extends Application {
 
     //** Accessors **
 
-    public static Context getInstance() {
+    public static Context getContextInstance() {
         return sContext;
     }
+
+    public static MainActivity getMainActivity() { return sMainActivity; }
 
     public static SharedPreferences getLogInPreferences() {
         return sLogInPreferences;

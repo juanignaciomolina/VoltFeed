@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/timelinePost">
+
+        <ImageView
+            android:id="@+id/post_color_column"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/post_header_idea"
+            android:paddingBottom="2dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:id="@+id/timeline_post_idea_header"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:paddingTop="4dp"
+                android:orientation="horizontal"
+                android:paddingLeft="4dp"
+                android:paddingRight="8dp"
+                android:layout_marginBottom="6dp">
+
+                <!-- date -->
+                <TextView
+                    android:id="@+id/timeline_post_idea_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/post_date"
+                    android:textSize="12sp"
+                    android:gravity="right|end|center"
+                    android:singleLine="true"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/timeline_post_idea_container"
+                android:layout_below="@id/timeline_post_idea_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <!-- post type image -->
+                    <ImageView
+                        android:id="@+id/timeline_idea_icon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_post_thought"/>
+
+                    <!-- content -->
+                    <TextView
+                        android:id="@+id/timeline_post_idea_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/font_dark"
+                        android:text="I'll be in your neighborhood doing errands..."
+                        android:minLines="2"
+                        android:maxLines="5"
+                        android:ellipsize="end"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:weightSum="2">
+
+                    <!-- fav icon-->
+                    <TextView
+                        android:id="@+id/timeline_post_idea_volt_count"
+                        style="@style/flatText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="7456"/>
+
+                    <!-- fav icon-->
+                    <TextView
+                        android:id="@+id/timeline_post_idea_volt_button"
+                        style="@style/flatButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="VOLT"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

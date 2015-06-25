@@ -1,16 +1,21 @@
 package com.droidko.voltfeed.activities;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.ToxicBakery.viewpager.transforms.DepthPageTransformer;
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
+import com.droidko.voltfeed.events.innerEvents.OnTimelineImageClickEvent;
 import com.droidko.voltfeed.ui.adapters.ViewPagerAdapter;
-import com.droidko.voltfeed.ui.widget.SlidingTabLayout;
+import com.droidko.voltfeed.ui.widget.SlidingTabs.SlidingTabLayout;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.parse.ParseUser;
+
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends VoltfeedActivity {
 
@@ -98,6 +103,7 @@ public class MainActivity extends VoltfeedActivity {
         // tittles and images for the tabs and the total amount of tabs
         mAdapter =  new ViewPagerAdapter(getVoltfeedFragmentManager(),mTitles, mNumbOfTabs, mImageResources);
         mPager.setAdapter(mAdapter);
+        mPager.setPageTransformer(true, new DepthPageTransformer());
 
         //Provide a custom view for the tabs (tab.xml)
         mTabs.setDistributeEvenly(true);
@@ -121,11 +127,30 @@ public class MainActivity extends VoltfeedActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
     // ** EVENT BUS **
 
     public class LogInEvent { }
 
     public class NoInternetEvent { }
+
+    public void onEvent(OnTimelineImageClickEvent event) {
+        Intent i = new Intent(this, FullscreenImageActivity.class);
+        i.putExtra(FullscreenImageActivity.EXT_FULL_RES_URI, event.getFullResUri());
+        i.putExtra(FullscreenImageActivity.EXT_LOW_RES_URI, event.getLowResUri());
+        startActivity(i);
+    }
 
     // ** End of EVENT BUS **
 

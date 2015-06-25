@@ -88,7 +88,6 @@ public class TimelineFragment extends Fragment {
         // todo customize animations extending RecyclerView.ItemAnimator class
 
         mFab.setOnClickListener(mFabClickListener);
-        //mFab.attachToRecyclerView(mRecyclerView);
 
         QuickReturnAnimation quickReturnAnimation = new QuickReturnAnimation(
                 mActivity.getQuickReturnWrapper(),

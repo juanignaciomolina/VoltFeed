@@ -1,5 +1,6 @@
 <resources>
 
+    <!-- MAIN THEME -->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -8,12 +9,14 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <!-- MAIN DIALOG STYLE -->
     <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColorPrimary">@color/ColorPrimary</item>
         <item name="android:background">@color/background_material_light</item>
     </style>
 
+    <!-- REGULAR BUTTON -->
     <style name="button.regular" parent="@android:style/Widget.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/guideline_button</item>
@@ -31,6 +34,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <!-- BLUE BUTTON -->
     <style name="button.blue" parent="@android:style/Widget.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/guideline_button</item>
@@ -48,6 +52,7 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!-- REGULAR EDIT TEXT-->
     <style name="editText.regular" parent="@android:style/Widget.EditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/guideline_editText</item>
@@ -55,31 +60,55 @@
         <item name="android:layout_marginBottom">8dp</item>
     </style>
 
-    <style name="post">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowColor">#FF000000</item>
-        <item name="android:shadowDx">0</item>
-        <item name="android:shadowDy">1</item>
-        <item name="android:shadowRadius">0.2</item>
-        <item name="android:background">@drawable/post_background</item>
-    </style>
+    <!-- Start of VOLT BAR -->
+        <!-- VOLT FLAT BUTTON -->
+        <style name="flatButton">
+            <item name="android:background">@drawable/btn_flat_gray</item>
+            <item name="android:paddingLeft">4dp</item>
+            <item name="android:paddingRight">4dp</item>
+            <item name="android:textColor">@color/font_light</item>
+            <item name="android:textStyle">bold</item>
+            <item name="android:gravity">center</item>
+        </style>
 
-    <style name="flatButton">
-        <item name="android:background">@drawable/btn_flat_gray</item>
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:paddingRight">4dp</item>
-        <item name="android:textColor">@color/voltfeed_gray_dark</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">center</item>
-    </style>
+        <!-- VOLTS COUNTER -->
+        <style name="flatText">
+            <item name="android:paddingLeft">4dp</item>
+            <item name="android:paddingRight">4dp</item>
+            <item name="android:textColor">@color/voltfeed_gray_dark</item>
+            <item name="android:gravity">center</item>
+        </style>
+    <!-- End of VOLT BAR -->
 
-    <style name="flatText">
-        <item name="android:paddingLeft">4dp</item>
-        <item name="android:paddingRight">4dp</item>
-        <item name="android:textColor">@color/voltfeed_gray_dark</item>
-        <item name="android:gravity">center</item>
-    </style>
+    <!-- Start of TIMELINE POST -->
+        <!-- POST BACKGROUND -->
+        <style name="timelinePost">
+            <item name="android:layout_width">match_parent</item>
+            <item name="android:layout_height">wrap_content</item>
+            <item name="android:background">@drawable/post_background</item>
+        </style>
+    <!-- End of TIMELINE POST -->
+
+    <!-- Start of FULL SCREEN ACTIVITY -->
+        <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
+            <item name="android:windowContentOverlay">@null</item>
+            <item name="android:windowBackground">@null</item>
+            <item name="metaButtonBarStyle">@style/ButtonBar</item>
+            <item name="metaButtonBarButtonStyle">@style/ButtonBarButton</item>
+        </style>
+
+        <!-- Backward-compatible version of ?android:attr/buttonBarStyle -->
+        <style name="ButtonBar">
+            <item name="android:paddingLeft">2dp</item>
+            <item name="android:paddingTop">5dp</item>
+            <item name="android:paddingRight">2dp</item>
+            <item name="android:paddingBottom">0dp</item>
+            <item name="android:background">@android:drawable/bottom_bar</item>
+        </style>
+
+        <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
+        <style name="ButtonBarButton"/>
+    <!-- End of FULL SCREEN ACTIVIY-->
 
 
 </resources>

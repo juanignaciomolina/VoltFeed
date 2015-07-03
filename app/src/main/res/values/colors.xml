@@ -53,6 +53,11 @@
     <color name="profile_gradient_center">#48000000</color>
     <color name="profile_background">#FFECF0F1</color>
 
+    <!-- New post -->
+    <color name="new_post_gradient_start">#F2ecf0f1</color>
+    <color name="new_post_gradient_center">#D9bdc3c7</color>
+    <color name="new_post_gradient_end">#BF95a5a6</color>
+
     <color name="voltfeed_green">#FF99CC00</color>
     <color name="voltfeed_green_dark">#FF88B85E</color>
     <color name="voltfeed_blue">#FF33B5E5</color>

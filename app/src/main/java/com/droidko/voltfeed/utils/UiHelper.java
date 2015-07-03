@@ -27,6 +27,9 @@ public class UiHelper {
     private static final Typeface sFontVarela = Typeface.createFromAsset(
             VoltfeedApp.getContextInstance().getAssets(), "VarelaRound-Regular.otf");
 
+    private static final Typeface sFontRoboto = Typeface.createFromAsset(
+            VoltfeedApp.getContextInstance().getAssets(), "Roboto-Regular.ttf");
+
     public static Toolbar setToolbar(ActionBarActivity activity,
                                      int view_toolbar,
                                      int view_title,
@@ -97,6 +100,10 @@ public class UiHelper {
         textView.setTypeface(sFontVarela);
     }
 
+    public static void setFontRoboto(TextView textView) {
+        textView.setTypeface(sFontRoboto);
+    }
+
     public static boolean canRunLollipopFx() {
         return (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                 && Config.LOLLIPOP_FX_ENABLED;
@@ -120,6 +127,11 @@ public class UiHelper {
                                    String tag) {
         activity.getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(
+                        R.anim.abc_fade_in,
+                        R.anim.abc_fade_out,
+                        R.anim.abc_fade_in,
+                        R.anim.abc_fade_out)
                 .add(containerId, fragment)
                 .addToBackStack(tag)
                 .commit();
@@ -128,6 +140,7 @@ public class UiHelper {
     public static void removeFragment(VoltfeedActivity activity, Fragment fragment) {
         activity.getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(R.anim.abc_fade_out, R.anim.abc_fade_in)
                 .remove(fragment)
                 .commit();
     }

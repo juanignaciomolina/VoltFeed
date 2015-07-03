@@ -16,6 +16,7 @@ import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.activities.MainActivity;
+import com.droidko.voltfeed.activities.VoltfeedActivity;
 import com.droidko.voltfeed.ui.QuickReturnAnimation;
 import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
 import com.droidko.voltfeed.utils.UiHelper;
@@ -191,7 +192,11 @@ public class TimelineFragment extends Fragment {
     View.OnClickListener mFabClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            UiHelper.showToast(mActivity, "FAB Click");
+            UiHelper.addFragment(
+                    (VoltfeedActivity) getActivity(),
+                    R.id.fragment_overlay_container,
+                    new NewPostFragment(),
+                    NewPostFragment.FRAGMENT_TAG);
         }
     };
 

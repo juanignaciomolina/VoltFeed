@@ -79,7 +79,7 @@
                     android:scaleType="centerCrop"
                     background="@color/placeholder"
                     fresco:roundedCornerRadius="3dp"
-                    fresco:roundWithOverlayColor="@color/post_background"
+                    fresco:roundWithOverlayColor="@color/card_background"
                     fresco:placeholderImage="@color/placeholder"
                     fresco:progressBarImage="@drawable/timeline_spinner"
                     fresco:progressBarImageScaleType="centerInside"

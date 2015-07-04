@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/btn_circular_purple_dark"/>
+        </shape>
+    </item>
+
+    <item
+        android:left="1px"
+        android:right="1px"
+        android:top="0dp"
+        android:bottom="1dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/btn_circular_purple"/>
+        </shape>
+    </item>
+</layer-list>

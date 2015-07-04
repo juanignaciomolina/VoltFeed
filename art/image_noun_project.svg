@@ -43,10 +43,10 @@
      inkscape:current-layer="svg2" /><path
      d="M448,32c17.656,0,32,14.375,32,32v288c0,17.656-14.344,32-32,32H64c-17.641,0-32-14.344-32-32V64c0-17.625,14.359-32,32-32  H448 M448,0H64C28.656,0,0,28.656,0,64v384c0,35.344,28.656,64,64,64h384c35.344,0,64-28.656,64-64V64C512,28.656,483.344,0,448,0  L448,0z M448,352L320.219,128L192.406,352H448z M198.797,276.188L159.875,224L64.406,352h91.156L198.797,276.188z M128,96  c-17.672,0-32,14.313-32,32s14.328,32,32,32s32-14.313,32-32S145.672,96,128,96z"
      id="path4"
-     style="fill:#4b77be;fill-opacity:1"
-     inkscape:export-filename="/home/juan/AndroidStudioProjects/VoltFeed/art/post_imagepng.png"
-     inkscape:export-xdpi="112.5"
-     inkscape:export-ydpi="112.5" /><text
+     style="fill:#ebeff0;fill-opacity:1"
+     inkscape:export-filename="/home/juan/AndroidStudioProjects/VoltFeed/art/post_image.png"
+     inkscape:export-xdpi="25.3125"
+     inkscape:export-ydpi="25.3125" /><text
      x="0"
      y="527"
      fill="#000000"

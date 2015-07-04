@@ -47,4 +47,7 @@
     <!-- FULL SCREEN IMAGE ACTIVITY -->
     <string name="title_activity_fullscreen_image">Voltfeed</string>
     <string name="dummy_button">Dummy Button</string>
+
+    <!-- NEW POST FRAGMENT -->
+    <string name="fragment_new_post_write_something">Speak your mind…</string>
 </resources>

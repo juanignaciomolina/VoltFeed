@@ -58,7 +58,7 @@ public class TimelineHelper {
                 TimelineIdeaPostViewHolder ideaPostViewHolder =
                         ((TimelineIdeaPostViewHolder) viewHolder);
                 ideaPostViewHolder.mContent.setText(post.getText());
-                UiHelper.setFontVarela(ideaPostViewHolder.mContent);
+                UiHelper.setFontRoboto(ideaPostViewHolder.mContent);
                 ideaPostViewHolder.mDate.setText(
                         new PrettyTime().format(post.getCreatedAt())
                 );
@@ -86,7 +86,7 @@ public class TimelineHelper {
                 TimelineImagePostViewHolder imagePostViewHolder =
                         ((TimelineImagePostViewHolder) viewHolder);
                 imagePostViewHolder.mTitle.setText(post.getTitle());
-                UiHelper.setFontVarela(imagePostViewHolder.mTitle);
+                UiHelper.setFontRoboto(imagePostViewHolder.mTitle);
                 imagePostViewHolder.mDate.setText(
                         new PrettyTime().format(post.getCreatedAt())
                 );

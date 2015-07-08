@@ -122,7 +122,7 @@ public class SignUpActivity extends ActionBarActivity {
         user.put(Schema.USERS_COL_EMAIL, email);
         user.signUpInBackground(mSignUpCallback);
 
-        Log.d(Config.LOG_DEBUG, "(Parse) Sign up request send");
+        Log.d(Config.LOG_DEBUG, "(Parse) Sign slide_to_top request send");
         blockUi();
     }
 

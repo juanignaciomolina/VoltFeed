@@ -38,7 +38,7 @@ public class LogInActivity extends VoltfeedActivity {
     protected void onRestart() {
         super.onRestart();
         //This goes in the onRestart() method in case the shared preferences data changed while the
-        //user was signing up on another activity
+        //user was signing slide_to_top on another activity
         //In any case, this should never happen in the app's normal flow.
         init();
     }

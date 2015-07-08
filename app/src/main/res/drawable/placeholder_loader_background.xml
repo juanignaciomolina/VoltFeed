@@ -12,6 +12,6 @@
         android:left="100dp"/>
 
     <solid
-        android:color="@color/placeholder" />
+        android:color="@color/general_placeholder" />
 
 </shape>

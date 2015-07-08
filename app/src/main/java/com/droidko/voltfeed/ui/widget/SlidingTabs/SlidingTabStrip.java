@@ -128,7 +128,7 @@ class SlidingTabStrip extends LinearLayout {
                     height, mSelectedIndicatorPaint);
         }
 
-        // Thin underline along the entire bottom edge
+        // Thin underline along the entire slide_from_below edge
         canvas.drawRect(0, height - mBottomBorderThickness, getWidth(), height, mBottomBorderPaint);
     }
 

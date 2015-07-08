@@ -2,23 +2,19 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#FFaf0848"/>
-            <corners
-                android:topLeftRadius="2dp"
-                android:bottomLeftRadius="2dp"/>
+            <solid android:color="@color/general_drop_shadow"/>
+            <corners android:radius="2dp" />
         </shape>
     </item>
 
     <item
         android:left="1px"
-        android:right="0dp"
+        android:right="1px"
         android:top="0dp"
         android:bottom="2dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/post_idea"/>
-            <corners
-                android:topLeftRadius="2dp"
-                android:bottomLeftRadius="2dp"/>
+            <solid android:color="@color/general_card_background"/>
+            <corners android:radius="2dp" />
         </shape>
     </item>
 </layer-list>

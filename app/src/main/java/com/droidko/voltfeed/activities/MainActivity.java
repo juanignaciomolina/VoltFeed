@@ -94,8 +94,8 @@ public class MainActivity extends VoltfeedActivity {
 
         mTitles[0] = getString(R.string.fragment_timeline_name);
         mTitles[1] = getString(R.string.fragment_profile_name);
-        mImageResources[0] = R.drawable.tab_timeline_img_selector;
-        mImageResources[1] = R.drawable.tab_profile_img_selector;
+        mImageResources[0] = R.drawable.selector_tab_img_timeline;
+        mImageResources[1] = R.drawable.selector_tab_img_profile;
     }
 
     private void initTabs() {
@@ -113,7 +113,7 @@ public class MainActivity extends VoltfeedActivity {
         mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tabsScrollColor);
+                return getResources().getColor(R.color.tabs_scroll);
             }
         });
 

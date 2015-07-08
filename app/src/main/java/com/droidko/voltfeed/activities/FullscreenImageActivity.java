@@ -71,7 +71,7 @@ public class FullscreenImageActivity extends Activity {
         final View controlsView = findViewById(R.id.fullscreen_content_controls);
         final View contentView = findViewById(R.id.fullscreen_picture_container);
 
-        // Set up an instance of SystemUiHider to control the system UI for
+        // Set slide_to_top an instance of SystemUiHider to control the system UI for
         // this activity.
         mSystemUiHider = SystemUiHider.getInstance(this, contentView, HIDER_FLAGS);
         mSystemUiHider.setup();
@@ -87,7 +87,7 @@ public class FullscreenImageActivity extends Activity {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
                             // If the ViewPropertyAnimator API is available
                             // (Honeycomb MR2 and later), use it to animate the
-                            // in-layout UI controls at the bottom of the
+                            // in-layout UI controls at the slide_from_below of the
                             // screen.
                             if (mControlsHeight == 0) {
                                 mControlsHeight = controlsView.getHeight();
@@ -113,7 +113,7 @@ public class FullscreenImageActivity extends Activity {
                     }
                 });
 
-        // Set up the user interaction to manually show or hide the system UI.
+        // Set slide_to_top the user interaction to manually show or hide the system UI.
         contentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -42,7 +42,7 @@ public class UiHelper {
 
         activity.setSupportActionBar(local_toolbar);
         activity.getSupportActionBar().setElevation(Config.UI_TOOLBAR_ELEVATION);
-        //We place the tittle in view_title. Otherwise it would end up on the left side of the logo
+        //We place the tittle in view_title. Otherwise it would end slide_to_top on the left side of the logo
         activity.getSupportActionBar().setTitle(null);
         local_logo.setImageResource(logo);
         local_title.setText(title);
@@ -121,11 +121,11 @@ public class UiHelper {
         }
     }
 
-    public static void addFragment(VoltfeedActivity activity,
+    public static void addFragment(Activity activity,
                                    int containerId,
                                    Fragment fragment,
                                    String tag) {
-        activity.getSupportFragmentManager()
+        ((VoltfeedActivity)activity).getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(
                         R.anim.abc_fade_in,
@@ -137,16 +137,17 @@ public class UiHelper {
                 .commit();
     }
 
-    public static void removeFragment(VoltfeedActivity activity, Fragment fragment) {
-        activity.getSupportFragmentManager()
+    public static void removeFragment(Activity activity, Fragment fragment) {
+        ((VoltfeedActivity)activity).getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(R.anim.abc_fade_out, R.anim.abc_fade_in)
+                .setCustomAnimations(R.anim.abc_fade_in, R.anim.abc_fade_out)
                 .remove(fragment)
                 .commit();
+        ((VoltfeedActivity)activity).getSupportFragmentManager().popBackStack();
     }
 
-    protected void replaceFragment(VoltfeedActivity activity, int containerId, Fragment fragment) {
-        activity.getSupportFragmentManager()
+    protected void replaceFragment(Activity activity, int containerId, Fragment fragment) {
+        ((VoltfeedActivity)activity).getSupportFragmentManager()
                 .beginTransaction()
                 .replace(containerId, fragment)
                 .commit();

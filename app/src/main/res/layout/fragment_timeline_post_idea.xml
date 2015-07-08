@@ -19,7 +19,7 @@
             android:id="@+id/post_color_column"
             android:layout_width="4dp"
             android:layout_height="match_parent"
-            android:background="@drawable/post_header_idea"
+            android:background="@drawable/post_lateral_idea"
             android:paddingBottom="2dp"/>
 
         <RelativeLayout
@@ -93,23 +93,45 @@
                     android:gravity="right"
                     android:weightSum="2">
 
-                    <!-- fav icon-->
-                    <TextView
-                        android:id="@+id/timeline_post_idea_volt_count"
-                        style="@style/flatText"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="7456"/>
+                        android:gravity="right"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:layout_marginTop="8dp">
 
-                    <!-- fav icon-->
-                    <TextView
-                        android:id="@+id/timeline_post_idea_volt_button"
-                        style="@style/flatButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="VOLT"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_volt"/>
+
+                            <TextView
+                                android:id="@+id/timeline_post_idea_volt_count"
+                                style="@style/flatText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="7456"/>
+
+                        </LinearLayout>
+
+                        <!-- fav icon-->
+                        <TextView
+                            android:id="@+id/timeline_post_idea_volt_button"
+                            style="@style/flatButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/volt"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

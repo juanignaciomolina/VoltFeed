@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- UI main colors -->
-    <color name="ColorPrimary">#FF1fc29f</color>
-    <color name="ColorPrimaryDark">#FF1bb392</color>
-    <color name="navigationBarColor">#FFf25a6b</color>
-    <color name="accent">#FFf25a6b</color>
-    <color name="progressBar">#FFf25a6b</color>
-    <color name="toolbar_background">#FF2f354d</color>
+    <!-- UI main general colors -->
+    <color name="general_primary">#FF1fc29f</color>
+    <color name="general_primary_dark">#FF1bb392</color>
+    <color name="general_navigation_bar">#FFf25a6b</color>
+    <color name="general_accent">#FFf25a6b</color>
+    <color name="general_progress_bar">#FFf25a6b</color>
+    <color name="general_toolbar_background">#FF2f354d</color>
 
-    <!-- UI secondary colors -->
-    <color name="drop_shadow">#CABBBBBB</color>
-    <color name="card_background">#FFF4FFF8</color>
-    <color name="placeholder">#FFE6E6E4</color>
-    <color name="placeholder_content">#FF989898</color>
-    <color name="icons_white">#FFEBEFF0</color>
+    <!-- UI secondary general colors -->
+    <color name="general_drop_shadow">#CABBBBBB</color>
+    <color name="general_card_background">#FFF4FFF8</color>
+    <color name="general_placeholder">#FFE6E6E4</color>
+    <color name="general_placeholder_content">#FF989898</color>
+    <color name="general_icons_white">#FFEBEFF0</color>
 
     <!-- Tabs -->
     <color name="tabs_background">#FF20263d</color>
-    <color name="tabsScrollColor">#FFf25a6b</color>
-    <color name="tabsTextColor">#FFFFFFFF</color>
-    <color name="tabsTextColor_selected">#FFf25a6b</color>
+    <color name="tabs_scroll">#FFf25a6b</color>
+    <color name="tabs_text">#FFFFFFFF</color>
+    <color name="tabs_text_selected">#FFf25a6b</color>
 
     <!-- Buttons -->
-    <color name="btn_blue">#FF33B5E5</color>
-    <color name="btn_regular">#FFFFFFFF</color>
-    <color name="btn_border_gray">#FFE6E6E4</color>
-    <color name="btn_flat_gray">#FFC4BCC3</color>
-    <color name="btn_circular_blue">#FF398FB8</color>
-    <color name="btn_circular_blue_dark">#FF27627E</color>
-    <color name="btn_circular_purple">#FF492846</color>
-    <color name="btn_circular_purple_dark">#FF3C213A</color>
+    <color name="button_blue">#FF33B5E5</color>
+    <color name="button_regular">#FFFFFFFF</color>
+    <color name="button_border_gray">#FFE6E6E4</color>
+    <color name="button_flat_gray">#FFC4BCC3</color>
+    <color name="button_circular_blue">#FF398FB8</color>
+    <color name="button_circular_blue_dark">#FF27627E</color>
+    <color name="button_circular_purple">#FF492846</color>
+    <color name="button_circular_purple_dark">#FF3C213A</color>
 
     <!-- Fonts -->
     <color name="font_light">#FFF4FFF8</color>
@@ -53,8 +53,8 @@
     <color name="post_date">#FF989898</color>
 
     <!-- Profile colors -->
-    <color name="profile_btn_follow">#FF2f354d</color>
-    <color name="profile_font_color_1">#FFF4FFF8</color>
+    <color name="profile_btn_follow">#FF2f354D</color>
+    <color name="profile_font_color_1">#FF2f354D</color>
     <color name="profile_font_color_2">#FFf25a6b</color>
     <color name="profile_font_color_3">#FFF4FFF8</color>
     <color name="profile_gradient_start">#96000000</color>
@@ -66,18 +66,15 @@
     <color name="new_post_gradient_center">#D9bdc3c7</color>
     <color name="new_post_gradient_end">#BF95a5a6</color>
 
-    <color name="voltfeed_green">#FF99CC00</color>
-    <color name="voltfeed_green_dark">#FF88B85E</color>
-    <color name="voltfeed_blue">#FF33B5E5</color>
-    <color name="voltfeed_blue_dark">#FF0099CC</color>
-    <color name="voltfeed_gray">#FFE6E6E4</color>
-    <color name="voltfeed_gray_dark">#FF989898</color>
-    <color name="voltfeed_red">#FFEE4136</color>
-
     <!-- RecyclerView colors -->
     <color name="recycler_divider" type="color">#AAA</color>
 
-    <!-- Useful colors -->
+
+    <!-- Specific colors -->
+    <color name="voltfeed_gray">#FFE6E6E4</color>
+    <color name="voltfeed_gray_dark">#FF989898</color>
+
+    <!-- Generic colors -->
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>

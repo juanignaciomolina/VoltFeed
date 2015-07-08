@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
+import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.entities.Post;
 import com.droidko.voltfeed.events.EventDispatcher;
 import com.droidko.voltfeed.ui.timeline.TimelineIdeaPostViewHolder;
@@ -30,14 +31,14 @@ public class TimelineHelper {
         View itemLayoutView;
         switch (type) {
 
-            //Case 0: Idea post
-            case 0:
+            //Case: Idea post
+            case Schema.POST_COL_TYPE_IDEA:
                 itemLayoutView = LayoutInflater.from(context)
                         .inflate(R.layout.fragment_timeline_post_idea, null);
                 return new TimelineIdeaPostViewHolder(itemLayoutView);
 
-            //Case 0: Image post
-            case 1:
+            //Case: Image post
+            case Schema.POST_COL_TYPE_IMAGE:
                 itemLayoutView = LayoutInflater.from(context)
                         .inflate(R.layout.fragment_timeline_post_image, null);
                 return new TimelineImagePostViewHolder(itemLayoutView);
@@ -53,8 +54,8 @@ public class TimelineHelper {
                                                      RecyclerView.ViewHolder viewHolder) {
         switch (post.getType()) {
 
-            //Case 0: Idea post
-            case 0:
+            //Case: Idea post
+            case Schema.POST_COL_TYPE_IDEA:
                 TimelineIdeaPostViewHolder ideaPostViewHolder =
                         ((TimelineIdeaPostViewHolder) viewHolder);
                 ideaPostViewHolder.mContent.setText(post.getText());
@@ -81,8 +82,8 @@ public class TimelineHelper {
 
                 return true;
 
-            //Case 1: Image post
-            case 1:
+            //Case: Image post
+            case Schema.POST_COL_TYPE_IMAGE:
                 TimelineImagePostViewHolder imagePostViewHolder =
                         ((TimelineImagePostViewHolder) viewHolder);
                 imagePostViewHolder.mTitle.setText(post.getTitle());

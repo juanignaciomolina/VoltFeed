@@ -26,11 +26,14 @@ public class Schema {
     public static final String POST_TABLE_NAME = "Posts";
     public static final String POST_COL_ID = "id";
     public static final String POST_COL_TYPE = "type";
+    public static final int POST_COL_TYPE_IDEA = 0;
+    public static final int POST_COL_TYPE_IMAGE = 1;
     public static final String POST_COL_LIKES = "likes";
     public static final String POST_COL_PICTURE = "picture";
     public static final String POST_COL_TEXT = "text";
     public static final String POST_COL_TITLE = "title";
     public static final String POST_COL_USER_ID = "userId";
+
 
     //** End of PARSE SCHEMA **
 }

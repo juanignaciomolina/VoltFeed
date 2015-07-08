@@ -30,4 +30,6 @@ public class Config {
     //USER
     public static final int USER_PASSWORD_MIN_LENGHT = 8;
 
+    //POST
+    public static final int POST_IDEA_MAX_CHAR_LENGHT = 140;
 }

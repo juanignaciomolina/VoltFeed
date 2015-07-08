@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_new_post_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/new_post_gradient"
     android:clickable="true">
 
     <LinearLayout
+        android:id="@+id/fragment_new_post_container_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/relativeLayout">
+        android:layout_above="@+id/fragment_new_post_container_idea">
 
         <FrameLayout
+            android:id="@+id/fragment_new_post_button_image"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
@@ -20,7 +23,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/background_circle_blue"
+                android:src="@drawable/selector_button_circle_blue"
                 android:layout_gravity="center"/>
 
             <ImageView
@@ -32,6 +35,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/fragment_new_post_button_camera"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content">
@@ -40,7 +44,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/background_circle_purple"
+                android:src="@drawable/selector_button_circle_purple"
                 android:layout_gravity="center"/>
 
             <ImageView
@@ -53,50 +57,59 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/fragment_new_post_container_idea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="120dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:gravity="right"
         android:layout_margin="24dp"
-        android:background="@drawable/background_card"
-        android:id="@+id/relativeLayout">
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@drawable/background_card">
+
+        <EditText
+            android:id="@+id/fragment_new_post_edit_text_idea"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingRight="4dp"
+            android:minLines="4"
+            android:maxLength="200"
+            android:background="@color/transparent"
+            android:gravity="top|left"
+            android:hint="@string/fragment_new_post_write_something"
+            android:inputType="textCapSentences|textMultiLine"
+            android:singleLine="false"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dp"
-            android:orientation="horizontal"
-            android:gravity="right"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:orientation="vertical">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:minLines="4"
-                android:maxLength="140"
-                android:background="@color/transparent"
-                android:gravity="top|left"
-                android:hint="@string/fragment_new_post_write_something"/>
-
-            <View
-                android:layout_width="2dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="6dp"
-                android:background="@color/gray"/>
+            <TextView
+                android:id="@+id/fragment_new_post_text_view_char_counter"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginBottom="4dp"
+                android:text="140"
+                android:gravity="center"/>
 
             <ImageView
+                android:id="@+id/fragment_new_post_button_idea"
                 android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_post_thought"/>
+                android:layout_height="68dp"
+                android:layout_gravity="center"
+                style="@style/flatButton.idea"
+                android:src="@drawable/ic_idea_button"/>
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

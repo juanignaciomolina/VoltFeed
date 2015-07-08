@@ -129,6 +129,7 @@
             android:src="@drawable/profile_sample"/>
 
         <TextView
+            android:id="@+id/fragment_profile_edit_text_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -136,7 +137,6 @@
             android:text="Juan Molina"
             android:textSize="52sp"
             android:textColor="@color/profile_font_color_3"
-            android:id="@+id/textView8"
             android:layout_gravity="center_horizontal|bottom"
             android:background="@drawable/profile_gradient"/>
 

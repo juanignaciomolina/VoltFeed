@@ -16,7 +16,7 @@ import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.activities.MainActivity;
-import com.droidko.voltfeed.activities.VoltfeedActivity;
+import com.droidko.voltfeed.events.innerEvents.OnPublishEvent;
 import com.droidko.voltfeed.ui.QuickReturnAnimation;
 import com.droidko.voltfeed.ui.adapters.TimelineRecyclerViewAdapter;
 import com.droidko.voltfeed.utils.UiHelper;
@@ -27,6 +27,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class TimelineFragment extends Fragment {
 
@@ -62,6 +64,18 @@ public class TimelineFragment extends Fragment {
         doGetNews();
     }
 
+    @Override
+    public void onResume() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
     private void initUi() {
         mRecyclerView = (RecyclerView) mActivity.findViewById(R.id.recycler_view_news);
         mFab = (FloatingActionButton) mActivity.findViewById(R.id.fab);
@@ -71,11 +85,13 @@ public class TimelineFragment extends Fragment {
         mProgressBar = (ProgressBar) mActivity.findViewById(R.id.loading_indicator);
 
         mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.ColorPrimaryDark,
-                R.color.ColorPrimary);
+                R.color.general_primary_dark,
+                R.color.general_primary);
+
+        mSwipeRefreshLayout.setOnRefreshListener(mSwipeRefreshListener);
 
         mProgressBar.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.progressBar),
+                getResources().getColor(R.color.general_progress_bar),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
         mLinearLayoutManager = new LinearLayoutManager(mActivity.getApplicationContext());
@@ -133,6 +149,7 @@ public class TimelineFragment extends Fragment {
         //from a non UI thread. So if we want to make changes in the dataset from a callback
         //that runs on the background (on a different thread) we MUST implement a handler
         android.os.Handler mHandler = mActivity.getWindow().getDecorView().getHandler();
+        if (mHandler == null) return;
         mHandler.post(new Runnable() {
             public void run(){
                 //change adapter contents
@@ -153,18 +170,14 @@ public class TimelineFragment extends Fragment {
     }
 
     private void refreshNews() {
-        // Load items
-        // ...
-
-        // Load complete
+        //Resfresh nesws
+        //...
+        
         onRefreshNewsComplete();
     }
 
     private void onRefreshNewsComplete() {
-        // Update the adapter and notify data set changed
-        // ...
-
-        // Stop refresh animation
+        setLoadingRowFromBackground(false);
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
@@ -173,6 +186,10 @@ public class TimelineFragment extends Fragment {
     public void onEvent(MainActivity.NoInternetEvent event){
         displayNoPosts(false);
         displayNoInternet(true);
+    }
+
+    public void onEvent(OnPublishEvent event){
+        mRecyclerView.smoothScrollToPosition(0);
     }
 
     // ** End of EVENT BUS **
@@ -193,7 +210,7 @@ public class TimelineFragment extends Fragment {
         @Override
         public void onClick(View v) {
             UiHelper.addFragment(
-                    (VoltfeedActivity) getActivity(),
+                    getActivity(),
                     R.id.fragment_overlay_container,
                     new NewPostFragment(),
                     NewPostFragment.FRAGMENT_TAG);
@@ -217,9 +234,6 @@ public class TimelineFragment extends Fragment {
                 mSwipeRefreshLayout.setVisibility(View.VISIBLE);
                 mTimelineRecyclerViewAdapter.addPostsToRecycler(list);
                 populateUi();
-                if (list.size() > 0
-                        && mTimelineRecyclerViewAdapter.getCurrentPosition() == mTimelineRecyclerViewAdapter.getItemCount() )
-                    mRecyclerView.smoothScrollToPosition(mTimelineRecyclerViewAdapter.getCurrentPosition() + 1);
             } else {
                 //Error 100: No internet
                 if (e.getCode() == 100 && mActualPage > 1) displayNoInternet(true);

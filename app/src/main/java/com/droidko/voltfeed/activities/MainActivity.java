@@ -12,6 +12,7 @@ import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.events.innerEvents.OnTimelineImageClickEvent;
 import com.droidko.voltfeed.ui.adapters.ViewPagerAdapter;
 import com.droidko.voltfeed.ui.widget.SlidingTabs.SlidingTabLayout;
+import com.droidko.voltfeed.utils.ApiHelper;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.parse.ParseUser;
 
@@ -91,6 +92,7 @@ public class MainActivity extends VoltfeedActivity {
     @Override
     protected void init() {
         checkUserLoggedIn(); //IMPORTANT! Should be the first thing in the Activity lifecycle
+        ApiHelper.initVoltedPosts();
 
         mTitles[0] = getString(R.string.fragment_timeline_name);
         mTitles[1] = getString(R.string.fragment_profile_name);
@@ -140,8 +142,6 @@ public class MainActivity extends VoltfeedActivity {
     }
 
     // ** EVENT BUS **
-
-    public class LogInEvent { }
 
     public class NoInternetEvent { }
 

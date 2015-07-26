@@ -20,7 +20,10 @@ import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.VoltfeedApp;
 import com.droidko.voltfeed.activities.VoltfeedActivity;
+import com.droidko.voltfeed.events.EventDispatcher;
 import com.parse.ParseException;
+
+import java.util.Random;
 
 public class UiHelper {
 
@@ -69,23 +72,24 @@ public class UiHelper {
 
     public static void showParseError(Context context, ParseException e) {
         switch (e.getCode()) {
-            //Error 100: No internet connection
-            case 100:
+            //Error: No internet connection
+            case ParseException.CONNECTION_FAILED:
                 showToast(context, context.getString(R.string.error_no_internet));
+                EventDispatcher.dispatchNoConnection();
                 break;
 
-            //Error 101: Email and/or password incorrect
-            case 101:
+            //Error: Email and/or password incorrect
+            case ParseException.OBJECT_NOT_FOUND:
                 showToast(context, context.getString(R.string.login_wrong_credentials));
                 break;
 
-            //Error 201: Invalid username (already taken)
-            case 201:
+            //Error: Invalid username (already taken)
+            case ParseException.USERNAME_TAKEN:
                 showToast(context, context.getString(R.string.signup_invalid_username));
                 break;
 
             //Error 209: Session expired
-            case 209:
+            case ParseException.INVALID_SESSION_TOKEN:
                 showToast(context, context.getString(R.string.error_session_expired));
                 break;
 
@@ -106,7 +110,7 @@ public class UiHelper {
 
     public static boolean canRunLollipopFx() {
         return (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                && Config.LOLLIPOP_FX_ENABLED;
+                && Config.UI_LOLLIPOP_FX_ENABLED;
     }
 
     @SuppressLint("NewApi")
@@ -146,11 +150,21 @@ public class UiHelper {
         ((VoltfeedActivity)activity).getSupportFragmentManager().popBackStack();
     }
 
-    protected void replaceFragment(Activity activity, int containerId, Fragment fragment) {
+    public static void replaceFragment(Activity activity, int containerId, Fragment fragment) {
         ((VoltfeedActivity)activity).getSupportFragmentManager()
                 .beginTransaction()
                 .replace(containerId, fragment)
                 .commit();
+    }
+
+    public static String getMessageOfTheDay() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((Config.UI_MOTD_COUNT - 1) + 1) + 1;
+        int resourceId = VoltfeedApp.getContextInstance().getResources().getIdentifier(
+                String.valueOf("motd_" + randomNum),
+                "string",
+                VoltfeedApp.getContextInstance().getPackageName());
+        return VoltfeedApp.getContextInstance().getResources().getString(resourceId);
     }
 
 }

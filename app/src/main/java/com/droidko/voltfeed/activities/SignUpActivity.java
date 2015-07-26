@@ -119,7 +119,7 @@ public class SignUpActivity extends ActionBarActivity {
         ParseUser user = new ParseUser();
         user.setUsername(username);
         user.setPassword(password);
-        user.put(Schema.USERS_COL_EMAIL, email);
+        user.put(Schema.USER_COL_EMAIL, email);
         user.signUpInBackground(mSignUpCallback);
 
         Log.d(Config.LOG_DEBUG, "(Parse) Sign slide_to_top request send");

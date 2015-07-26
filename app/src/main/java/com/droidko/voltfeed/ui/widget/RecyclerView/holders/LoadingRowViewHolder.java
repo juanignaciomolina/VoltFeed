@@ -14,7 +14,7 @@ public class LoadingRowViewHolder extends RecyclerView.ViewHolder {
 
     public LoadingRowViewHolder(View itemLayoutView) {
         super(itemLayoutView);
-        this.mProgressBar = (ProgressBar) itemLayoutView.findViewById(R.id.loading_indicator);
+        this.mProgressBar = (ProgressBar) itemLayoutView.findViewById(R.id.timeline_loading_indicator);
         this.mDivider = (ImageView) itemLayoutView.findViewById(R.id.recycler_divider);
     }
 

@@ -1,7 +1,5 @@
 package com.droidko.voltfeed.entities;
 
-import java.util.Date;
-
 public class User {
 
     //The vars identifiers should be like these so that they match with the server side attributes and can be
@@ -17,7 +15,6 @@ public class User {
     private String description;
     private String location;
     private String name;
-    private String phone;
     private String picture;
     private String createdAt;
     private String updatedAt;
@@ -102,14 +99,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getPicture() {

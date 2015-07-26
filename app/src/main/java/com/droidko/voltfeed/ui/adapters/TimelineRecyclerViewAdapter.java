@@ -52,14 +52,14 @@ public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
     }
 
     public void addPostsToRecycler(List<ParseObject> list) {
-        ArrayList<TimelineRow> mTimelineRows = new ArrayList<TimelineRow>();
+        ArrayList<TimelineRow> timelineRowsList = new ArrayList<TimelineRow>();
         for (ParseObject parseObject : list) {
             TimelineRow timelineRow = new TimelineRow();
             Post post = new Post(parseObject);
             timelineRow.setPost(post);
-            mTimelineRows.add(timelineRow);
+            timelineRowsList.add(timelineRow);
         }
-        addAllItems(mTimelineRows);
+        addAllItems(timelineRowsList);
     }
 
 }

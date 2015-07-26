@@ -4,11 +4,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
-import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.entities.Post;
@@ -56,7 +55,7 @@ public class TimelineHelper {
 
             //Case: Idea post
             case Schema.POST_COL_TYPE_IDEA:
-                TimelineIdeaPostViewHolder ideaPostViewHolder =
+                final TimelineIdeaPostViewHolder ideaPostViewHolder =
                         ((TimelineIdeaPostViewHolder) viewHolder);
                 ideaPostViewHolder.mContent.setText(post.getText());
                 UiHelper.setFontRoboto(ideaPostViewHolder.mContent);
@@ -64,19 +63,21 @@ public class TimelineHelper {
                         new PrettyTime().format(post.getCreatedAt())
                 );
                 UiHelper.setFontVarela(ideaPostViewHolder.mDate);
-                populateLikeView(ideaPostViewHolder.mVoltButton);
+                populateVoltViews(post,
+                        ideaPostViewHolder.mVoltButton,
+                        ideaPostViewHolder.mVoltsCounter);
 
                 ideaPostViewHolder.mVoltButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(Config.LOG_DEBUG, "On Volt Click: " + post.getId());
+                        ApiHelper.voltPost(post, !view.isSelected());
                     }
                 });
 
                 ideaPostViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(Config.LOG_DEBUG, "On Row Click: " + post.getId());
+                        //Do something on row click
                     }
                 });
 
@@ -84,7 +85,7 @@ public class TimelineHelper {
 
             //Case: Image post
             case Schema.POST_COL_TYPE_IMAGE:
-                TimelineImagePostViewHolder imagePostViewHolder =
+                final TimelineImagePostViewHolder imagePostViewHolder =
                         ((TimelineImagePostViewHolder) viewHolder);
                 imagePostViewHolder.mTitle.setText(post.getTitle());
                 UiHelper.setFontRoboto(imagePostViewHolder.mTitle);
@@ -107,19 +108,21 @@ public class TimelineHelper {
                         }
                     });
                 }
-                populateLikeView(imagePostViewHolder.mVoltButton);
+                populateVoltViews(post,
+                        imagePostViewHolder.mVoltButton,
+                        imagePostViewHolder.mVoltsCounter);
 
                 imagePostViewHolder.mVoltButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(Config.LOG_DEBUG, "On Volt Click: " + post.getId());
+                        ApiHelper.voltPost(post, !view.isSelected());
                     }
                 });
 
                 imagePostViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d(Config.LOG_DEBUG, "On Row Click: " + post.getId());
+                        //Do something on row click
                     }
                 });
 
@@ -131,8 +134,20 @@ public class TimelineHelper {
         }
     }
 
-    private static void populateLikeView(View view) {
-        //TODO mostrar el color del boton segun si el usuario volteo el post o no
+    private static void populateVoltViews(Post post,
+                                          View button,
+                                          TextView counter) {
+        if (ApiHelper.isPostVolted(post)) {
+            //counter.setText(String.valueOf(post.getVolts() + 1));
+            ((TextView)button).setText(R.string.volted);
+            button.setSelected(true);
+
+        } else {
+            //counter.setText(String.valueOf(post.getVolts()));
+            ((TextView)button).setText(R.string.volt);
+            button.setSelected(false);
+        }
+        counter.setText(String.valueOf(post.getVolts()));
     }
 
     public static void loadImageInTimeline(SimpleDraweeView draweeView,
@@ -154,7 +169,6 @@ public class TimelineHelper {
                 .setOldController(draweeView.getController())
                 .build();
 
-        //raweeView.setHierarchy(hierarchy);
         draweeView.setController(controller);
     }
 

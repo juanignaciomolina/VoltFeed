@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.utils.AnimationHelper;
-import com.droidko.voltfeed.utils.PublishHelper;
+import com.droidko.voltfeed.utils.ApiHelper;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.droidko.voltfeed.utils.ValidationHelper;
 
@@ -64,7 +64,7 @@ public class NewPostFragment extends Fragment {
             public void onClick(View view) {
                 if (TextUtils.isEmpty(mEditTextIdea.getText().toString())) return;
                 if (!ValidationHelper.validateIdea(mEditTextIdea.getText().toString())) return;
-                PublishHelper.publishIdea(String.valueOf(mEditTextIdea.getText()));
+                ApiHelper.publishIdea(String.valueOf(mEditTextIdea.getText()));
                 animateLayoutPublishIdea();
                 UiHelper.showToast(getActivity(), "Idea posted");
                 UiHelper.removeFragment(getActivity(), NewPostFragment.this);

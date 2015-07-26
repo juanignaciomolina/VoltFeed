@@ -8,12 +8,12 @@
     xmlns:app="http://schemas.android.com/tools">
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+        android:id="@+id/timeline_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_news"
+            android:id="@+id/timeline_recycler_view_news"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
@@ -23,7 +23,7 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <com.melnykov.fab.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/timeline_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
@@ -38,7 +38,7 @@
         app:layout_scrollFlags="scroll|enterAlways"/>
 
     <LinearLayout
-        android:id="@+id/no_news_holder"
+        android:id="@+id/timeline_no_news_holder"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -46,7 +46,7 @@
         android:visibility="gone">
 
         <ImageView
-            android:id="@+id/no_news_image"
+            android:id="@+id/timeline_no_news_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -54,7 +54,7 @@
             android:src="@drawable/nopost"/>
 
         <TextView
-            android:id="@+id/no_news_text"
+            android:id="@+id/timeline_no_news_text"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -67,16 +67,26 @@
         </LinearLayout>
 
     <include
-        android:id="@+id/no_internet_holder"
+        android:id="@+id/timeline_no_internet_holder"
         layout="@layout/no_internet"
         android:visibility="gone"/>
 
     <ProgressBar
-        android:id="@+id/loading_indicator"
+        android:id="@+id/timeline_loading_indicator"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_centerInParent="true"
         android:indeterminate="true"
         style="?android:attr/progressBarStyle"/>
+
+    <TextView
+        android:id="@+id/timeline_message_of_the_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeline_loading_indicator"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:padding="56dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
 </RelativeLayout>

@@ -27,6 +27,7 @@
     <color name="button_regular">#FFFFFFFF</color>
     <color name="button_border_gray">#FFE6E6E4</color>
     <color name="button_flat_gray">#FFC4BCC3</color>
+    <color name="button_flat_gray_dark">#FFA0939F</color>
     <color name="button_circular_blue">#FF398FB8</color>
     <color name="button_circular_blue_dark">#FF27627E</color>
     <color name="button_circular_purple">#FF492846</color>

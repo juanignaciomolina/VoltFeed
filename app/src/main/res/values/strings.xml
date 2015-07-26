@@ -9,6 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="progressdialog_connecting">Connecting…</string>
     <string name="volt">VOLT</string>
+    <string name="volted">VOLTED</string>
 
     <!-- LOG IN-->
     <string name="login_disclaimer">By joining you agree to our</string>
@@ -51,4 +52,12 @@
 
     <!-- NEW POST FRAGMENT -->
     <string name="fragment_new_post_write_something">Speak your mind…</string>
+
+    <!-- MESSAGE OF THE DAY -->
+    <string name="motd_1">Electrifying some people to get some news…</string>
+    <string name="motd_2">Disabling smells detector…</string>
+    <string name="motd_3">Calling mothership…</string>
+    <string name="motd_4">Calculating π…</string>
+    <string name="motd_5">Freeing Schrödinger\'s cat…</string>
+
 </resources>

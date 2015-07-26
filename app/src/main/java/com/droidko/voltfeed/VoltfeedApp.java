@@ -28,7 +28,7 @@ public class VoltfeedApp extends Application {
     //** Initializers **
 
     private void initParse(Context context) {
-        Parse.enableLocalDatastore(context);
+        //Parse.enableLocalDatastore(context); Cannot be enable while using Parse Cache
         Parse.initialize(context, Config.PARSE_APP_ID, Config.PARSE_CLIENT_KEY);
     }
 

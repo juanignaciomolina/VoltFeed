@@ -19,12 +19,16 @@ public class Config {
     public static final String LOG_ERROR = "VF - Error: ";
 
     //UI
-    public static final boolean LOLLIPOP_FX_ENABLED = true;
+    public static final boolean UI_LOLLIPOP_FX_ENABLED = true;
     public static final int UI_TOOLBAR_ELEVATION = 10;
     public static final int UI_TABS_ELEVATION = 8;
+    public static final int UI_MOTD_COUNT = 5;
+
+    //PERFORMANCE
+    public static final int PERFORMANCE_API_PAGE_SIZE = 8;
+    public static final int PERFORMANCE_CACHE_MAX_AGE = 120000;
 
     //FEED
-    public static final int FEED_PAGE_SIZE = 8;
     public static final int FEED_FECTH_THRESHOLD = 2;
 
     //USER

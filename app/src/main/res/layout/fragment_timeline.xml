@@ -5,7 +5,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:background="@color/timeline_background"
-    xmlns:app="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/tools"
+    android:clickable="true">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/timeline_swipe_refresh_layout"

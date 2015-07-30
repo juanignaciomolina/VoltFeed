@@ -29,6 +29,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 
+import java.util.Date;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -48,7 +49,6 @@ public class TimelineFragment extends Fragment {
     private TimelineRecyclerViewAdapter mTimelineRecyclerViewAdapter;
     private LinearLayoutManager mLinearLayoutManager;
 
-    private int mActualPage = 0;
     private boolean mNewsLoading = false;
 
     @Override
@@ -65,7 +65,7 @@ public class TimelineFragment extends Fragment {
 
         initUi();
         setLoadingUi();
-        doGetNews();
+        doGetOlderPosts();
     }
 
     @Override
@@ -117,16 +117,17 @@ public class TimelineFragment extends Fragment {
 
     private void setTimelineRecyclerViewAdapter() {
         mTimelineRecyclerViewAdapter = new TimelineRecyclerViewAdapter();
-        mTimelineRecyclerViewAdapter.setOnViewHolderListener(mViewHolderListener);
+        mTimelineRecyclerViewAdapter.setPaginationListener(mViewHolderListener);
         mTimelineRecyclerViewAdapter
                 .setLoaderDividerColor(getResources().getColor(R.color.timeline_item_separator));
 
         mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
-        //TODO customize animations extending RecyclerView.ItemAnimator class
+        //TODO (1) customize animations extending RecyclerView.ItemAnimator class
     }
 
     private void populateUi() {
         mProgressBar.setVisibility(View.GONE);
+        mMotd.setVisibility(View.GONE);
         mFab.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setVisibility(View.VISIBLE);
         if (mTimelineRecyclerViewAdapter != null
@@ -156,27 +157,37 @@ public class TimelineFragment extends Fragment {
         mMotd.setVisibility(View.VISIBLE);
     }
 
-    private void setLoadingRowFromBackground(final boolean state) {
+    private void setLoadingRowFromBackground(final boolean state, @Nullable final Integer position) {
         android.os.Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             public void run() {
-                //change adapter contents
-                if (state) mTimelineRecyclerViewAdapter.addLoadingRow();
-                else mTimelineRecyclerViewAdapter.removeLoadingRow();
+                if (state) {
+                    if (position != null) mTimelineRecyclerViewAdapter.addLoadingRow(position);
+                    else mTimelineRecyclerViewAdapter.addLoadingRow();
+                }
+                else {
+                    if (position != null) mTimelineRecyclerViewAdapter.removeLoadingRow(position);
+                    mTimelineRecyclerViewAdapter.removeLoadingRow();
+                }
             }
         });
     }
 
-    private void doGetNews() {
+    private void doGetOlderPosts() {
         mNewsLoading = true;
-        ApiHelper.getTimelinePosts(mActualPage, mGetPostsCallback);
-        mActualPage ++;
+        Date latestDate = null;
+        if (mTimelineRecyclerViewAdapter.getLastPost() != null) latestDate =
+                mTimelineRecyclerViewAdapter.getLastPost().getCreatedAt();
+        ApiHelper.getOlderTimelinePosts(
+                latestDate,
+                mGetOlderPostsCallback);
     }
 
-    private void refreshNews() {
+    private void doGetNewerPosts() {
         mNewsLoading = true;
-        mActualPage = 0;
-        ApiHelper.getTimelinePosts(mActualPage, mGetPostsCallback, false);
+        ApiHelper.getNewerTimelinePosts(
+                mTimelineRecyclerViewAdapter.getFirstPost().getCreatedAt(),
+                mGetNewerPostsCallback);
     }
 
     private void onRefreshNewsComplete() {
@@ -193,28 +204,40 @@ public class TimelineFragment extends Fragment {
     }
 
     public void onEvent(OnPublishEvent event){
-        mRecyclerView.smoothScrollToPosition(0);
+        doGetNewerPosts();
     }
 
     public void onEvent(OnVoltsPostsUpdate event) {
+        /*TODO (2) As of RecyclerView 22.2.0 there seems to be a bug where notifing the adapater
+        of a dataset change while the recycler is scrolling may cause a fatal error*/
+        /*
         android.os.Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             public void run() {
                 mTimelineRecyclerViewAdapter.notifyDataSetChanged();
             }
         });
+        */
     }
 
     // ** End of EVENT BUS **
 
     // ** ANONYMOUS CLASSES **
 
-    TimelineRecyclerViewAdapter.OnViewHolderListener mViewHolderListener = new TimelineRecyclerViewAdapter.OnViewHolderListener() {
+    TimelineRecyclerViewAdapter.PaginationListener mViewHolderListener = new TimelineRecyclerViewAdapter.PaginationListener() {
+        @Override
+        public void onPreviousPageRequired() {
+            if (!mNewsLoading) {
+                setLoadingRowFromBackground(true, 0);
+                doGetNewerPosts();
+            }
+        }
+
         @Override
         public void onNextPageRequired() {
             if (!mNewsLoading) {
-                setLoadingRowFromBackground(true);
-                doGetNews();
+                setLoadingRowFromBackground(true, null);
+                doGetOlderPosts();
             }
         }
     };
@@ -233,11 +256,11 @@ public class TimelineFragment extends Fragment {
     SwipeRefreshLayout.OnRefreshListener mSwipeRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            refreshNews();
+            doGetNewerPosts();
         }
     };
 
-    FindCallback<ParseObject> mGetPostsCallback = new FindCallback<ParseObject>() {
+    FindCallback<ParseObject> mGetOlderPostsCallback = new FindCallback<ParseObject>() {
         @Override
         public void done(List<ParseObject> list, ParseException e) {
             if (e == null) {
@@ -245,17 +268,31 @@ public class TimelineFragment extends Fragment {
                 //the recycler adapter to get a smooth animation
                 mSwipeRefreshLayout.setVisibility(View.VISIBLE);
                 if (mSwipeRefreshLayout.isRefreshing()) setTimelineRecyclerViewAdapter();
-                mTimelineRecyclerViewAdapter.addPostsToRecycler(list);
+                mTimelineRecyclerViewAdapter.addPostsListToRecyclerEnd(list);
                 populateUi();
             } else {
                 //Error: No internet
-                if (e.getCode() == ParseException.CONNECTION_FAILED && mActualPage > 1) displayNoInternet(true);
-                else UiHelper.showParseError(mActivity, e);
+                UiHelper.showParseError(mActivity, e);
             }
             if(mNewsLoading) mTimelineRecyclerViewAdapter.removeLoadingRow();
             mNewsLoading = false;
-            setLoadingRowFromBackground(false);
-            if (mSwipeRefreshLayout.isRefreshing()) onRefreshNewsComplete();
+            setLoadingRowFromBackground(false, null);
+        }
+    };
+
+    FindCallback<ParseObject> mGetNewerPostsCallback = new FindCallback<ParseObject>() {
+        @Override
+        public void done(List<ParseObject> list, ParseException e) {
+            if (e == null) {
+                mTimelineRecyclerViewAdapter.addPostsListToRecyclerStart(list);
+                populateUi();
+            } else {
+                //Error: No internet
+                UiHelper.showParseError(mActivity, e);
+            }
+            mNewsLoading = false;
+            setLoadingRowFromBackground(false, 0);
+            onRefreshNewsComplete();
         }
     };
 

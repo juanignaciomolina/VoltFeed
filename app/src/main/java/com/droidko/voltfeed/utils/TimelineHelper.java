@@ -71,6 +71,10 @@ public class TimelineHelper {
                     @Override
                     public void onClick(View view) {
                         ApiHelper.voltPost(post, !view.isSelected());
+                        populateVoltViews(post,
+                                ideaPostViewHolder.mVoltButton,
+                                ideaPostViewHolder.mVoltsCounter);
+                        AnimationHelper.popButton(view);
                     }
                 });
 
@@ -116,6 +120,10 @@ public class TimelineHelper {
                     @Override
                     public void onClick(View view) {
                         ApiHelper.voltPost(post, !view.isSelected());
+                        populateVoltViews(post,
+                                imagePostViewHolder.mVoltButton,
+                                imagePostViewHolder.mVoltsCounter);
+                        AnimationHelper.popButton(view);
                     }
                 });
 
@@ -138,12 +146,10 @@ public class TimelineHelper {
                                           View button,
                                           TextView counter) {
         if (ApiHelper.isPostVolted(post)) {
-            //counter.setText(String.valueOf(post.getVolts() + 1));
             ((TextView)button).setText(R.string.volted);
             button.setSelected(true);
 
         } else {
-            //counter.setText(String.valueOf(post.getVolts()));
             ((TextView)button).setText(R.string.volt);
             button.setSelected(false);
         }

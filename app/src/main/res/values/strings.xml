@@ -36,7 +36,8 @@
     <string name="signup_user_created">User created</string>
 
     <!-- MAIN ACTIVITY -->
-    <string name="fragment_timeline_name">NETWORK</string>
+    <string name="fragment_connections_name">CONNECTIONS</string>
+    <string name="fragment_timeline_name">TIMELINE</string>
     <string name="fragment_profile_name">PROFILE</string>
     <string name="fragment_timeline_no_posts">There are no posts to display\nWait a little bit and pull down to refresh</string>
 

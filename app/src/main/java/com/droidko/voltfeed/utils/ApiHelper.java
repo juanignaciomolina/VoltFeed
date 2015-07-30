@@ -1,5 +1,8 @@
 package com.droidko.voltfeed.utils;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.VoltfeedApp;
@@ -12,6 +15,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -31,18 +35,23 @@ public class ApiHelper {
     //** End of PUBLISH **
 
     //** Start of TIMELINE **
-    public static void getTimelinePosts(int actualPage, FindCallback findCallback) {
-        getTimelinePosts(actualPage, findCallback, true);
-    }
-
-    public static void getTimelinePosts(int actualPage, FindCallback findCallback, boolean useCache) {
+    public static void getOlderTimelinePosts(@Nullable Date fromPostDate, FindCallback findCallback) {
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery(Schema.POST_TABLE_NAME);
         parseQuery.orderByDescending(Schema.COL_CREATED_AT);
-        parseQuery.setSkip(actualPage * Config.PERFORMANCE_API_PAGE_SIZE);
+        if (fromPostDate != null) parseQuery.whereLessThan(Schema.COL_CREATED_AT, fromPostDate);
         parseQuery.setLimit(Config.PERFORMANCE_API_PAGE_SIZE);
-        parseQuery.setMaxCacheAge(Config.PERFORMANCE_CACHE_MAX_AGE);
+        //parseQuery.setMaxCacheAge(Config.PERFORMANCE_CACHE_MAX_AGE);
         //parseQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
-        if (!useCache) parseQuery.clearCachedResult();
+        parseQuery.findInBackground(findCallback);
+    }
+
+    public static void getNewerTimelinePosts(@NonNull Date latestPostDate, FindCallback findCallback) {
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery(Schema.POST_TABLE_NAME);
+        parseQuery.orderByAscending(Schema.COL_CREATED_AT);
+        parseQuery.whereGreaterThan(Schema.COL_CREATED_AT, latestPostDate);
+        parseQuery.setLimit(Config.PERFORMANCE_API_PAGE_SIZE);
+        //parseQuery.setMaxCacheAge(Config.PERFORMANCE_CACHE_MAX_AGE);
+        //parseQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
         parseQuery.findInBackground(findCallback);
     }
     //** End of TIMELINE **
@@ -52,18 +61,19 @@ public class ApiHelper {
 
     public static Volt voltPost(Post post, boolean isVolted) {
         ParseObject parsePost = ParseObject.createWithoutData(Schema.POST_TABLE_NAME, post.getId());
-        Volt volt = new Volt(isVolted);
+        Volt volt = new Volt(post.getId(), isVolted);
         if (volt.getState()) {
             post.setVolts(post.getVolts() + 1);
             getVoltedPosts().add(post.getId());
             parsePost.increment(Schema.POST_COL_VOLTS, +1);
             ParseUser.getCurrentUser().getRelation(Schema.USER_COL_VOLTS_POSTS).add(parsePost);
-        }
-        else {
+            ParseUser.getCurrentUser().increment(Schema.USER_COL_VOLTS_POSTS_COUNT, +1);
+        } else {
             post.setVolts(post.getVolts() - 1);
             getVoltedPosts().remove(post.getId());
             parsePost.increment(Schema.POST_COL_VOLTS, -1);
             ParseUser.getCurrentUser().getRelation(Schema.USER_COL_VOLTS_POSTS).remove(parsePost);
+            ParseUser.getCurrentUser().increment(Schema.USER_COL_VOLTS_POSTS_COUNT, -1);
         }
         parsePost.saveEventually();
         ParseUser.getCurrentUser().saveEventually();

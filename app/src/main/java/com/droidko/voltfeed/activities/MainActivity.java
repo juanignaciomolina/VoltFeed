@@ -25,7 +25,7 @@ public class MainActivity extends VoltfeedActivity {
     private ViewPagerAdapter mAdapter;
     private SlidingTabLayout mTabs;
     private LinearLayout mQuickReturnWrapper;
-    private int mNumbOfTabs = 2;
+    private int mNumbOfTabs = 3;
     private CharSequence mTitles[] = new CharSequence[mNumbOfTabs];
     private int mImageResources[] = new int[mNumbOfTabs];
 
@@ -94,10 +94,12 @@ public class MainActivity extends VoltfeedActivity {
         checkUserLoggedIn(); //IMPORTANT! Should be the first thing in the Activity lifecycle
         ApiHelper.initVoltedPosts();
 
-        mTitles[0] = getString(R.string.fragment_timeline_name);
-        mTitles[1] = getString(R.string.fragment_profile_name);
-        mImageResources[0] = R.drawable.selector_tab_img_timeline;
-        mImageResources[1] = R.drawable.selector_tab_img_profile;
+        mTitles[0] = getString(R.string.fragment_connections_name);
+        mTitles[1] = getString(R.string.fragment_timeline_name);
+        mTitles[2] = getString(R.string.fragment_profile_name);
+        mImageResources[0] = R.drawable.selector_tab_img_connections;
+        mImageResources[1] = R.drawable.selector_tab_img_timeline;
+        mImageResources[2] = R.drawable.selector_tab_img_profile;
     }
 
     private void initTabs() {
@@ -142,8 +144,6 @@ public class MainActivity extends VoltfeedActivity {
     }
 
     // ** EVENT BUS **
-
-    public class NoInternetEvent { }
 
     public void onEvent(OnTimelineImageClickEvent event) {
         Intent i = new Intent(this, FullscreenImageActivity.class);

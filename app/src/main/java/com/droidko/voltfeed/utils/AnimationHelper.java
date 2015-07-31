@@ -25,4 +25,11 @@ public class AnimationHelper {
         view.startAnimation(animation);
     }
 
+    public static void popButton(View view) {
+        Animation animation = AnimationUtils.loadAnimation(
+                VoltfeedApp.getContextInstance(),
+                R.anim.button_pop);
+        view.startAnimation(animation);
+    }
+
 }

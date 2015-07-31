@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.droidko.voltfeed.fragments.ConnectionsFragment;
 import com.droidko.voltfeed.fragments.TimelineFragment;
 import com.droidko.voltfeed.fragments.ProfileFragment;
 
@@ -29,16 +30,19 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        // position == 0: left tab
-        if(position == 0) {
-            TimelineFragment timelineFragment = new TimelineFragment();
-            return timelineFragment;
-        } else {
-            // position != 0: right tab (this could be changed to allow more tabs
-            // if necessary)
-            ProfileFragment profileFragment = new ProfileFragment();
-            return profileFragment;
+        switch (position) {
+            case 0:
+                ConnectionsFragment connectionsFragment = new ConnectionsFragment();
+                return connectionsFragment;
+            case 1:
+                TimelineFragment timelineFragment = new TimelineFragment();
+                return timelineFragment;
+            case 2:
+            default:
+                ProfileFragment profileFragment = new ProfileFragment();
+                return profileFragment;
         }
+
     }
 
     //Return the title or image according to the select tab

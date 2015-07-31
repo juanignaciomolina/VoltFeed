@@ -15,15 +15,27 @@ import java.util.List;
 
 public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
 
-    private OnViewHolderListener mOnViewHolderListener;
+    private PaginationListener mPaginationListener;
     private TimelineHelper mTimelineHelper = new TimelineHelper();
 
-    public interface OnViewHolderListener {
+    private Post mFirstPost;
+    private Post mLastPost;
+
+    public interface PaginationListener {
+        void onPreviousPageRequired();
         void onNextPageRequired();
     }
 
-    public void setOnViewHolderListener(OnViewHolderListener mOnViewHolderListener) {
-        this.mOnViewHolderListener = mOnViewHolderListener;
+    public void setPaginationListener(PaginationListener mPaginationListener) {
+        this.mPaginationListener = mPaginationListener;
+    }
+
+    public Post getFirstPost() {
+        return mFirstPost;
+    }
+
+    public Post getLastPost() {
+        return mLastPost;
     }
 
     // Get item view type (invoked by the customized RecyclerAdapter)
@@ -46,18 +58,39 @@ public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
     public void recyclerOnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         mTimelineHelper.populateTimelineViewHolder(getItems().get(position).getPost(), viewHolder);
 
-        if (mOnViewHolderListener != null
-                && position == getItemCount() - 1 - Config.FEED_FECTH_THRESHOLD)
-            mOnViewHolderListener.onNextPageRequired();
+        if (mPaginationListener != null) {
+            //Aproaching end of dataset -> require next page
+            if (position == getItemCount() - 1 - Config.FEED_FECTH_THRESHOLD)
+                mPaginationListener.onNextPageRequired();
+            //Aproaching start of dataset -> requiere previous page
+            else if (position == Config.FEED_FECTH_THRESHOLD)
+                mPaginationListener.onPreviousPageRequired();
+        }
     }
 
-    public void addPostsToRecycler(List<ParseObject> list) {
+    public void addPostToRecyclerStart(Post post) {
+        TimelineRow timelineRow = new TimelineRow();
+        timelineRow.setPost(post);
+        addItemToPos(0, timelineRow);
+        mFirstPost = post;
+        if (mLastPost == null) mLastPost = post;
+    }
+
+    public void addPostsListToRecyclerStart(List<ParseObject> list) {
+        for (ParseObject parseObject : list) {
+            addPostToRecyclerStart(new Post(parseObject));
+        }
+    }
+
+    public void addPostsListToRecyclerEnd(List<ParseObject> list) {
         ArrayList<TimelineRow> timelineRowsList = new ArrayList<TimelineRow>();
         for (ParseObject parseObject : list) {
             TimelineRow timelineRow = new TimelineRow();
             Post post = new Post(parseObject);
             timelineRow.setPost(post);
             timelineRowsList.add(timelineRow);
+            if (mFirstPost == null) mFirstPost = post;
+            mLastPost = post;
         }
         addAllItems(timelineRowsList);
     }

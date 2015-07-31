@@ -2,9 +2,11 @@ package com.droidko.voltfeed.entities;
 
 public class Volt {
 
+    private String mVoltedObjectId;
     private boolean mState;
 
-    public Volt (boolean state) {
+    public Volt(String voltedObjectId, boolean state) {
+        mVoltedObjectId = voltedObjectId;
         mState = state;
     }
 
@@ -12,8 +14,7 @@ public class Volt {
         return mState;
     }
 
-    public void setState(boolean state) {
-        mState = state;
+    public String getVoltedObjectId() {
+        return mVoltedObjectId;
     }
-
 }

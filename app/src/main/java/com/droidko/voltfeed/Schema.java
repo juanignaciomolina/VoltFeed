@@ -20,7 +20,11 @@ public class Schema {
     public static final String USER_COL_COVER = "cover";
     public static final String USER_COL_DESCRIPTION = "description";
     public static final String USER_COL_LOCATION = "location";
+    public static final String USER_COL_FOLLOWING_USERS = "followingUsers";
+    public static final String USER_COL_FOLLOWING_USERS_COUNT = "followingUsersCount";
+    public static final String USER_COL_FOLLOWERS_USERS_COUNT = "followersUsersCount";
     public static final String USER_COL_VOLTS_POSTS = "voltsPosts";
+    public static final String USER_COL_VOLTS_POSTS_COUNT = "voltsPostsCount";
 
     //POSTS
     public static final String POST_TABLE_NAME = "Posts";

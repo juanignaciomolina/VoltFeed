@@ -25,6 +25,9 @@ public class Schema {
     public static final String USER_COL_FOLLOWERS_USERS_COUNT = "followersUsersCount";
     public static final String USER_COL_VOLTS_POSTS = "voltsPosts";
     public static final String USER_COL_VOLTS_POSTS_COUNT = "voltsPostsCount";
+    public static final String USER_COL_POSTS_CREATED= "postsCreated";
+    public static final String USER_COL_POSTS_CREATED_COUNT = "postsCreatedCount";
+
 
     //POSTS
     public static final String POST_TABLE_NAME = "Posts";

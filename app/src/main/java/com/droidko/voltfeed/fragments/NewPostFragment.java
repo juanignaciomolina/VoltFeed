@@ -106,7 +106,7 @@ public class NewPostFragment extends Fragment {
                 if (charsAvailable >= 0)
                     mTextViewCharCounter.setTextColor(getResources().getColor(R.color.font_dark));
                 else
-                    mTextViewCharCounter.setTextColor(getResources().getColor(R.color.red));
+                    mTextViewCharCounter.setTextColor(getResources().getColor(R.color.pallete_red));
             }
         });
     }

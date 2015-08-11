@@ -88,9 +88,14 @@ public class UiHelper {
                 showToast(context, context.getString(R.string.signup_invalid_username));
                 break;
 
-            //Error 209: Session expired
+            //Error: Session expired
             case ParseException.INVALID_SESSION_TOKEN:
                 showToast(context, context.getString(R.string.error_session_expired));
+                break;
+
+            //Error: Query results not cached
+            case ParseException.CACHE_MISS:
+                //Do nothing
                 break;
 
             //Error ??: Default unknown error

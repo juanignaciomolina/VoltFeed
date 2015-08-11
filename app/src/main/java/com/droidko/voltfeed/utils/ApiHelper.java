@@ -28,6 +28,9 @@ public class ApiHelper {
         parsePost.put(Schema.POST_COL_TEXT, ideaText);
         parsePost.put(Schema.POST_COL_USER_ID, ParseUser.getCurrentUser().getUsername());
         parsePost.saveEventually();
+        ParseUser.getCurrentUser().increment(Schema.USER_COL_POSTS_CREATED_COUNT, +1);
+        ParseUser.getCurrentUser().saveEventually();
+        ParseUser.getCurrentUser().fetchInBackground();
         Post post = new Post(parsePost);
         EventDispatcher.dispatchPublish(post);
         return post;
@@ -77,6 +80,7 @@ public class ApiHelper {
         }
         parsePost.saveEventually();
         ParseUser.getCurrentUser().saveEventually();
+        ParseUser.getCurrentUser().fetchInBackground();
         EventDispatcher.dispatchVolt(volt);
         EventDispatcher.dispatchVoltsPostsUpdate(getVoltedPosts());
         return volt;
@@ -113,6 +117,8 @@ public class ApiHelper {
     //Any callback passed to this method will be called twice, first for the catched
     //results and later with the results from the network!
     protected static void fetchVoltedPosts(FindCallback<ParseObject> findCallback) {
+        if (ParseUser.getCurrentUser() == null) return;
+        ParseUser.getCurrentUser().fetchInBackground();
         ParseQuery<ParseObject> parseQuery =
                 ParseUser
                         .getCurrentUser()

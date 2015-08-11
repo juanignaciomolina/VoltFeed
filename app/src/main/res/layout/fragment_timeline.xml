@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    android:background="@color/timeline_background"
+    android:background="@color/white_2"
     xmlns:app="http://schemas.android.com/tools"
     android:clickable="true">
 
@@ -32,9 +32,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        fab:fab_colorNormal="@color/fab"
-        fab:fab_colorPressed="@color/fab_pressed"
-        fab:fab_colorRipple="@color/fab_ripple"
+        fab:fab_colorNormal="@color/pallete_green"
+        fab:fab_colorPressed="@color/pallete_red"
+        fab:fab_colorRipple="@color/pallete_blue"
         android:src="@drawable/ic_add_white"
         app:layout_scrollFlags="scroll|enterAlways"/>
 

@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/button_circular_purple_dark"/>
+            <solid android:color="@color/pallete_post_camera_dark"/>
         </shape>
     </item>
 
@@ -12,7 +12,7 @@
         android:top="0dp"
         android:bottom="1dp">
         <shape android:shape="oval">
-            <solid android:color="@color/button_circular_purple"/>
+            <solid android:color="@color/pallete_post_camera"/>
         </shape>
     </item>
 </layer-list>

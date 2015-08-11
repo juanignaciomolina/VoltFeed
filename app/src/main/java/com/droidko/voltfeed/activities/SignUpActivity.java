@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,19 +93,19 @@ public class SignUpActivity extends ActionBarActivity {
     private void blockUi() {
         if (mActivityIsVisible) {
             mJoin.setEnabled(false);
-            mJoin.setTextColor(getResources().getColor(R.color.gray));
+            mJoin.setTextColor(getResources().getColor(R.color.gray_1));
             mUsername.setEnabled(false);
             mMail.setEnabled(false);
             mPassword.setEnabled(false);
             mConfirmPassword.setEnabled(false);
-            mConnectingDialogInstance.show(mFragmentManager, "Spinner_fragment_tag");
+            mConnectingDialogInstance.show(mFragmentManager, ConnectingDialog.TAG);
         }
     }
 
     private void unlockUi() {
         if (mActivityIsVisible) {
             mJoin.setEnabled(true);
-            mJoin.setTextColor(getResources().getColor(R.color.white));
+            mJoin.setTextColor(getResources().getColor(R.color.white_0));
             mUsername.setEnabled(true);
             mMail.setEnabled(true);
             mPassword.setEnabled(true);
@@ -122,7 +121,6 @@ public class SignUpActivity extends ActionBarActivity {
         user.put(Schema.USER_COL_EMAIL, email);
         user.signUpInBackground(mSignUpCallback);
 
-        Log.d(Config.LOG_DEBUG, "(Parse) Sign slide_to_top request send");
         blockUi();
     }
 

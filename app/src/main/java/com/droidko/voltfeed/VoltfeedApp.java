@@ -4,16 +4,19 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.droidko.voltfeed.activities.MainActivity;
+import com.cloudinary.Cloudinary;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.parse.Parse;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class VoltfeedApp extends Application {
 
     private static Context sContext;
     private static SharedPreferences sLogInPreferences;
     private static SharedPreferences.Editor sLogInPreferencesEditor;
-    private static MainActivity sMainActivity;
+    private static Cloudinary sCloudinary;
 
     @Override
     public void onCreate() {
@@ -22,6 +25,7 @@ public class VoltfeedApp extends Application {
         sContext = this;
         initParse(this);
         initFresco(this);
+        initCloudinary();
         initPreferences(this);
     }
 
@@ -36,6 +40,14 @@ public class VoltfeedApp extends Application {
         Fresco.initialize(context);
     }
 
+    private void initCloudinary() {
+        Map config = new HashMap();
+        config.put("cloud_name", Config.CLOUDINARY_NAME);
+        config.put("api_key", Config.CLOUDINARY_API_KEY);
+        config.put("api_secret", Config.CLOUDINARY_API_SECRET);
+        sCloudinary = new Cloudinary(config);
+    }
+
     private void initPreferences(Context context) {
         sLogInPreferences = context.getSharedPreferences(
                 Config.LOGIN_PREFERENCES_KEY,
@@ -45,11 +57,14 @@ public class VoltfeedApp extends Application {
 
     //** Accessors **
 
+
+    public static Cloudinary getCloudinary() {
+        return sCloudinary;
+    }
+
     public static Context getContextInstance() {
         return sContext;
     }
-
-    public static MainActivity getMainActivity() { return sMainActivity; }
 
     public static SharedPreferences getLogInPreferences() {
         return sLogInPreferences;

@@ -9,6 +9,8 @@ import com.droidko.voltfeed.R;
 
 public class ConnectingDialog extends DialogFragment {
 
+    public static final String TAG = "spinner_fragment_tag";
+
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
 

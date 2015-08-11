@@ -92,21 +92,21 @@ public class LogInActivity extends VoltfeedActivity {
     private void blockUi() {
         if (mActivityIsVisible) {
             mLogIn.setEnabled(false);
-            mLogIn.setTextColor(getResources().getColor(R.color.gray));
+            mLogIn.setTextColor(getResources().getColor(R.color.gray_1));
             mSignUp.setEnabled(false);
-            mSignUp.setTextColor(getResources().getColor(R.color.gray));
+            mSignUp.setTextColor(getResources().getColor(R.color.gray_1));
             mMail.setEnabled(false);
             mPassword.setEnabled(false);
-            mConnectingDialogInstance.show(getVoltfeedFragmentManager(), "Spinner_fragment_tag");
+            mConnectingDialogInstance.show(getVoltfeedFragmentManager(), ConnectingDialog.TAG);
         }
     }
 
     private void unlockUi() {
         if (mActivityIsVisible) {
             mLogIn.setEnabled(true);
-            mLogIn.setTextColor(getResources().getColor(R.color.black));
+            mLogIn.setTextColor(getResources().getColor(R.color.black_0));
             mSignUp.setEnabled(true);
-            mSignUp.setTextColor(getResources().getColor(R.color.white));
+            mSignUp.setTextColor(getResources().getColor(R.color.white_0));
             mMail.setEnabled(true);
             mPassword.setEnabled(true);
             mConnectingDialogInstance.dismiss();

@@ -117,7 +117,7 @@ public class MainActivity extends VoltfeedActivity {
         mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.tabs_scroll);
+                return getResources().getColor(R.color.pallete_red);
             }
         });
 

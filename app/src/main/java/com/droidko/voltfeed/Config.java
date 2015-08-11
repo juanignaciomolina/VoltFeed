@@ -9,12 +9,17 @@ public class Config {
     public static final String PARSE_APP_ID = "IC10flmq1iP4EyhiCWeHyaWPK6BVLnWJqPutVBRS";
     public static final String PARSE_CLIENT_KEY = "MmYFbfEDfHpMns3BXIkMLDL47YHQvGBH0DfGULFU";
 
+    //CLOUDINARY API
+    public static final String CLOUDINARY_NAME = "voltfeed";
+    public static final String CLOUDINARY_API_KEY = "986199667734139";
+    public static final String CLOUDINARY_API_SECRET = "IC10flmq1iP4EyhiCWeHyaWPK6BVLnWJqPutVBRS";
+
     //SharedPreferences
     public static final String LOGIN_PREFERENCES_KEY = "Login_preferences";
     public static final String LOGIN_EMAIL_KEY = "Email";
     public static final String LOGIN_PASSWORD_KEY = "Password";
 
-    //Logs
+    //LOGS
     public static final String LOG_DEBUG = "VF - Debug:";
     public static final String LOG_ERROR = "VF - Error: ";
 
@@ -23,6 +28,8 @@ public class Config {
     public static final int UI_TOOLBAR_ELEVATION = 10;
     public static final int UI_TABS_ELEVATION = 8;
     public static final int UI_MOTD_COUNT = 5;
+    public static final int UI_SCREEN_BASE_WIDTH = 1080;
+    public static final int UI_SCREEN_BASE_HEIGHT = 1920;
 
     //PERFORMANCE
     public static final int PERFORMANCE_API_PAGE_SIZE = 8;

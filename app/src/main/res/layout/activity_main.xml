@@ -23,8 +23,8 @@
         <com.droidko.voltfeed.ui.widget.SlidingTabs.SlidingTabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/guideline_yellow"
-            android:background="@color/tabs_background"
+            android:layout_height="@dimen/spacing_large"
+            android:background="@color/pallete_blue_dark"
             android:visibility="visible"/>
 
         <ImageView

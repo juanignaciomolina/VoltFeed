@@ -18,14 +18,14 @@ public class ConnectionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_connections, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTextViewUsername = (TextView) view.findViewById(R.id.fragment_profile_edit_text_user_name);
+        mTextViewUsername = (TextView) view.findViewById(R.id.fragment_profile_text_view_username);
 
         UiHelper.setFontVarela(mTextViewUsername);
     }

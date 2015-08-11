@@ -13,6 +13,6 @@
     android:bottom="2dp" />
 
     <solid
-    android:color="@color/post_idea" />
+    android:color="@color/pallete_post_idea" />
 
 </shape>

@@ -13,6 +13,6 @@
     android:bottom="2dp" />
 
     <solid
-    android:color="@color/general_accent" />
+    android:color="@color/pallete_red" />
 
 </shape>

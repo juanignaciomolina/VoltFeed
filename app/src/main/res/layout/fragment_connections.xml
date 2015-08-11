@@ -1,71 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/white_0"
     android:clickable="true">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_centerHorizontal="true">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/fragment_profile_image_view_avatar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="Avatar image"
-            android:scaleType="centerCrop"
-            background="@color/white_4"
-            fresco:placeholderImage="@color/white_4"
-            fresco:progressBarImage="@drawable/timeline_spinner"
-            fresco:progressBarImageScaleType="centerInside"
-            fresco:progressBarAutoRotateInterval="1500"
-            fresco:failureImage="@drawable/ic_network_error"
-            fresco:failureImageScaleType="centerInside"/>
-
-        <TextView
-            android:id="@+id/fragment_profile_text_view_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:paddingTop="@dimen/spacing_medium"
-            android:paddingBottom="@dimen/spacing_medium"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Juan Molina"
-            android:textSize="52sp"
-            android:textColor="@color/white_1"
-            android:background="@drawable/profile_gradient"/>
-
-    </FrameLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/pallete_blue"/>
 
     <LinearLayout
-        android:id="@+id/fragment_profile_stats_container"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:weightSum="3"
+        android:id="@+id/fragment_profile_stats_container"
         android:background="@color/white_2">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
 
             <TextView
@@ -78,24 +36,18 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/fragment_profile_text_view_followers_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="followers"
+                android:text="FOLLOWERS"
                 android:textColor="@color/pallete_blue"/>
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="2dp"
-                android:background="@color/pallete_red"/>
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
 
             <TextView
@@ -108,24 +60,18 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/fragment_profile_text_view_volts_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="volts"
+                android:text="VOLTS"
                 android:textColor="@color/pallete_blue"/>
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="2dp"
-                android:background="@color/pallete_red"/>
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
             android:gravity="center">
 
             <TextView
@@ -138,19 +84,60 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/fragment_profile_text_view_posts_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="posts"
+                android:text="POSTS"
                 android:textColor="@color/pallete_blue"/>
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="2dp"
-                android:background="@color/pallete_red"/>
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fragment_profile_stats_container"
+        android:layout_centerHorizontal="true"
+        android:background="@color/pallete_blue"
+        android:id="@+id/frameLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="FOLLOW"
+            android:textColor="@color/white_1"
+            android:id="@+id/textView7"
+            android:gravity="center"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/frameLayout">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_sample"/>
+
+        <TextView
+            android:id="@+id/fragment_profile_text_view_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Juan Molina"
+            android:textSize="52sp"
+            android:textColor="@color/white_1"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@drawable/profile_gradient"/>
+
+    </FrameLayout>
+
+</RelativeLayout>

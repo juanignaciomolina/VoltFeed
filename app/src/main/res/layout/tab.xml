@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/guideline_yellow"
+    android:layout_height="@dimen/spacing_large"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:gravity="center">
 
     <ImageView
         android:id="@+id/tab_img"
-        android:layout_width="28dp"
-        android:layout_height="28dp"/>
+        android:layout_width="56dp"
+        android:layout_height="28dp"
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/tab_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/guideline_tab_text"
+        android:textSize="@dimen/tab_text_size"
         android:visibility="gone"/>
 </LinearLayout>

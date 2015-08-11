@@ -42,7 +42,7 @@
                     android:id="@+id/timeline_post_idea_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/post_date"
+                    android:textColor="@color/gray_2"
                     android:textSize="12sp"
                     android:gravity="right|end|center"
                     android:singleLine="true"

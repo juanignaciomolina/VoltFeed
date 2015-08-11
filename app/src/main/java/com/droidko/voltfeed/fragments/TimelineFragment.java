@@ -90,15 +90,15 @@ public class TimelineFragment extends Fragment {
         mMotd = (TextView) mActivity.findViewById(R.id.timeline_message_of_the_day);
 
         mSwipeRefreshLayout.setColorSchemeResources(
-                R.color.general_primary_dark,
-                R.color.general_primary);
+                R.color.pallete_green_dark,
+                R.color.pallete_green);
 
         mMotd.setText(UiHelper.getMessageOfTheDay());
 
         mSwipeRefreshLayout.setOnRefreshListener(mSwipeRefreshListener);
 
         mProgressBar.getIndeterminateDrawable().setColorFilter(
-                getResources().getColor(R.color.general_progress_bar),
+                getResources().getColor(R.color.pallete_red),
                 android.graphics.PorterDuff.Mode.SRC_IN);
 
         mLinearLayoutManager = new LinearLayoutManager(mActivity.getApplicationContext());
@@ -119,7 +119,7 @@ public class TimelineFragment extends Fragment {
         mTimelineRecyclerViewAdapter = new TimelineRecyclerViewAdapter();
         mTimelineRecyclerViewAdapter.setPaginationListener(mViewHolderListener);
         mTimelineRecyclerViewAdapter
-                .setLoaderDividerColor(getResources().getColor(R.color.timeline_item_separator));
+                .setLoaderDividerColor(getResources().getColor(R.color.white_4));
 
         mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
         //TODO (1) customize animations extending RecyclerView.ItemAnimator class
@@ -194,7 +194,7 @@ public class TimelineFragment extends Fragment {
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    // ** EVENT BUS **
+    // ** Start of EVENT BUS **
 
     public void onEvent(OnNoConnection event){
         if (this.isVisible()) {

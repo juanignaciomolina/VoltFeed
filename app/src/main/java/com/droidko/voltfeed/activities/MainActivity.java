@@ -6,7 +6,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.ToxicBakery.viewpager.transforms.DepthPageTransformer;
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.events.innerEvents.OnTimelineImageClickEvent;
@@ -107,7 +106,8 @@ public class MainActivity extends VoltfeedActivity {
         // tittles and images for the tabs and the total amount of tabs
         mAdapter =  new ViewPagerAdapter(getVoltfeedFragmentManager(),mTitles, mNumbOfTabs, mImageResources);
         mPager.setAdapter(mAdapter);
-        mPager.setPageTransformer(true, new DepthPageTransformer());
+        //mPager.setPageTransformer(true, new DepthPageTransformer());
+        //mPager.setPageTransformer(true, new ForegroundToBackgroundTransformer());
 
         //Provide a custom view for the tabs (tab.xml)
         mTabs.setDistributeEvenly(true);
@@ -122,6 +122,7 @@ public class MainActivity extends VoltfeedActivity {
         });
 
         mTabs.setViewPager(mPager);
+        mPager.setCurrentItem(1); //Start from the middle tab
     }
 
     private void checkUserLoggedIn() {

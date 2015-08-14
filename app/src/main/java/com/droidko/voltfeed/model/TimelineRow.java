@@ -1,4 +1,4 @@
-package com.droidko.voltfeed.entities;
+package com.droidko.voltfeed.model;
 
 import com.droidko.voltfeed.ui.widget.RecyclerView.RecyclerItem;
 

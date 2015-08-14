@@ -1,4 +1,4 @@
-package com.droidko.voltfeed.entities;
+package com.droidko.voltfeed.model;
 
 public class Volt {
 

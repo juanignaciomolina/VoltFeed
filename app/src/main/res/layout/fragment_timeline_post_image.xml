@@ -69,13 +69,13 @@
                     android:textColor="@color/font_dark"
                     android:ellipsize="end"/>
 
-                <!-- post picture image -->
+                <!-- post image -->
                 <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/timeline_post_image_picture"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:layout_marginTop="4dp"
-                    android:contentDescription="post picture"
+                    android:contentDescription="post avatar"
                     android:scaleType="centerCrop"
                     background="@color/white_4"
                     fresco:roundedCornerRadius="3dp"

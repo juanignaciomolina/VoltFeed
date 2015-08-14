@@ -3,141 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white_0"
+    android:background="@color/white_2"
     android:clickable="true">
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:weightSum="3"
-        android:id="@+id/fragment_profile_stats_container"
-        android:background="@color/white_2">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/fragment_profile_text_view_followers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="9320"
-                android:textColor="@color/pallete_red"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="FOLLOWERS"
-                android:textColor="@color/pallete_blue"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/fragment_profile_text_view_volts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="190"
-                android:textColor="@color/pallete_red"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="VOLTS"
-                android:textColor="@color/pallete_blue"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/fragment_profile_text_view_posts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="289"
-                android:textColor="@color/pallete_red"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="POSTS"
-                android:textColor="@color/pallete_blue"/>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/fragment_profile_stats_container"
-        android:layout_centerHorizontal="true"
-        android:background="@color/pallete_blue"
-        android:id="@+id/frameLayout">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="FOLLOW"
-            android:textColor="@color/white_1"
-            android:id="@+id/textView7"
-            android:gravity="center"/>
-    </FrameLayout>
-
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/connections_recycler_view_users"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/frameLayout">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_sample"/>
-
-        <TextView
-            android:id="@+id/fragment_profile_text_view_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Juan Molina"
-            android:textSize="52sp"
-            android:textColor="@color/white_1"
-            android:layout_gravity="center_horizontal|bottom"
-            android:background="@drawable/profile_gradient"/>
-
-    </FrameLayout>
+        android:scrollbars="none"
+        android:paddingTop="104dp"
+        android:clipToPadding="false"/>
 
 </RelativeLayout>

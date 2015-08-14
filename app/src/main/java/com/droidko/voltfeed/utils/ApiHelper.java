@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.Schema;
 import com.droidko.voltfeed.VoltfeedApp;
-import com.droidko.voltfeed.entities.Post;
-import com.droidko.voltfeed.entities.Volt;
+import com.droidko.voltfeed.model.Post;
+import com.droidko.voltfeed.model.Volt;
 import com.droidko.voltfeed.events.EventDispatcher;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -58,6 +58,28 @@ public class ApiHelper {
         parseQuery.findInBackground(findCallback);
     }
     //** End of TIMELINE **
+    public static void getOlderConnectionsUsers(@Nullable Date fromPostDate, FindCallback findCallback) {
+        ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
+        parseQuery.orderByDescending(Schema.COL_CREATED_AT);
+        if (fromPostDate != null) parseQuery.whereLessThan(Schema.COL_CREATED_AT, fromPostDate);
+        parseQuery.setLimit(Config.PERFORMANCE_API_PAGE_SIZE);
+        //parseQuery.setMaxCacheAge(Config.PERFORMANCE_CACHE_MAX_AGE);
+        //parseQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        parseQuery.findInBackground(findCallback);
+    }
+
+    public static void getNewerConnectionsUsers(@NonNull Date latestPostDate, FindCallback findCallback) {
+        ParseQuery<ParseUser> parseQuery = ParseUser.getQuery();
+        parseQuery.orderByAscending(Schema.COL_CREATED_AT);
+        parseQuery.whereGreaterThan(Schema.COL_CREATED_AT, latestPostDate);
+        parseQuery.setLimit(Config.PERFORMANCE_API_PAGE_SIZE);
+        //parseQuery.setMaxCacheAge(Config.PERFORMANCE_CACHE_MAX_AGE);
+        //parseQuery.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        parseQuery.findInBackground(findCallback);
+    }
+    //** Start of CONNECTIONS **
+
+    //** End of CONNECTIONS *
 
     //** Start of VOLTS **
     private static HashSet<String> sVoltedPostsSet = new HashSet<String>();

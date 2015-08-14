@@ -1,6 +1,6 @@
 package com.droidko.voltfeed.events.innerEvents;
 
-import com.droidko.voltfeed.entities.Post;
+import com.droidko.voltfeed.model.Post;
 
 public class OnPublishEvent {
     private Post mPost;

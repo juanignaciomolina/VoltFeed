@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.droidko.voltfeed.Config;
-import com.droidko.voltfeed.entities.Post;
-import com.droidko.voltfeed.entities.TimelineRow;
+import com.droidko.voltfeed.model.Post;
+import com.droidko.voltfeed.model.TimelineRow;
 import com.droidko.voltfeed.ui.widget.RecyclerView.RecyclerAdapter;
 import com.droidko.voltfeed.utils.TimelineHelper;
 import com.parse.ParseObject;

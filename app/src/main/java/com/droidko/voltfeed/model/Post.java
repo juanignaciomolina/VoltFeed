@@ -1,16 +1,13 @@
-package com.droidko.voltfeed.entities;
+package com.droidko.voltfeed.model;
 
 import com.droidko.voltfeed.Schema;
 import com.parse.ParseObject;
 
 import java.util.Date;
 
-/**
- * Created by juan on 31/03/15.
- */
 public class Post {
 
-    //Values
+    //Attributes
     private String mId;
     private int mType;
     private String mPicture;

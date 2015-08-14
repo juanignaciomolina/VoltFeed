@@ -13,7 +13,7 @@
         android:id="@+id/fullscreen_picture_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="Full screen picture"
+        android:contentDescription="Full screen avatar"
         android:scaleType="fitCenter"
         android:keepScreenOn="true"/>
     <!-- This FrameLayout insets its children based on system windows using

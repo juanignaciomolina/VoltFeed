@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
-import com.droidko.voltfeed.entities.Post;
+import com.droidko.voltfeed.model.Post;
 import com.droidko.voltfeed.events.EventDispatcher;
 import com.droidko.voltfeed.ui.timeline.TimelineIdeaPostViewHolder;
 import com.droidko.voltfeed.ui.timeline.TimelineImagePostViewHolder;

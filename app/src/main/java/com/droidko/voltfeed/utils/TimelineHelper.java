@@ -8,21 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.droidko.voltfeed.Config;
 import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.Schema;
-import com.droidko.voltfeed.model.Post;
 import com.droidko.voltfeed.events.EventDispatcher;
+import com.droidko.voltfeed.model.Post;
 import com.droidko.voltfeed.ui.timeline.TimelineIdeaPostViewHolder;
 import com.droidko.voltfeed.ui.timeline.TimelineImagePostViewHolder;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import org.ocpsoft.pretty.time.PrettyTime;
 
 public class TimelineHelper {
+
+    public volatile static int sLastPosition = -1;
 
     public static RecyclerView.ViewHolder
     getTimelineViewHolder(int type,
@@ -50,7 +48,8 @@ public class TimelineHelper {
     }
 
     public boolean populateTimelineViewHolder(final Post post,
-                                                     RecyclerView.ViewHolder viewHolder) {
+                                              RecyclerView.ViewHolder viewHolder,
+                                              int position) {
         switch (post.getType()) {
 
             //Case: Idea post
@@ -85,30 +84,33 @@ public class TimelineHelper {
                     }
                 });
 
+                animateViewIfNew(ideaPostViewHolder.mCard, position);
+
                 return true;
 
             //Case: Image post
             case Schema.POST_COL_TYPE_IMAGE:
                 final TimelineImagePostViewHolder imagePostViewHolder =
                         ((TimelineImagePostViewHolder) viewHolder);
-                imagePostViewHolder.mTitle.setText(post.getTitle());
+                imagePostViewHolder.mTitle.setText(post.getText());
                 UiHelper.setFontRoboto(imagePostViewHolder.mTitle);
                 imagePostViewHolder.mDate.setText(
                         new PrettyTime().format(post.getCreatedAt())
                 );
                 UiHelper.setFontVarela(imagePostViewHolder.mDate);
                 if (!TextUtils.isEmpty(post.getPicture())) {
-                    final Uri fullResUri;
-                    fullResUri = Uri.parse(post.getPicture());
+                    final Uri fullResUri =
+                            Uri.parse(ImagesHelper.getFullScreenImage(post.getPicture()));
+                    final Uri standarResUri =
+                            Uri.parse(ImagesHelper.getTimelineImage(post.getPicture()));
 
-                    loadImageInTimeline(imagePostViewHolder.mPicture,
-                            fullResUri,
-                            null);
+                    ImagesHelper.loadImageInTimeline(imagePostViewHolder.mPicture, post);
 
                     imagePostViewHolder.mPicture.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            EventDispatcher.dispatchTimelineImageClick(fullResUri.toString(), null);
+                            EventDispatcher.dispatchTimelineImageClick(fullResUri.toString(),
+                                    standarResUri.toString());
                         }
                     });
                 }
@@ -134,11 +136,21 @@ public class TimelineHelper {
                     }
                 });
 
+                animateViewIfNew(imagePostViewHolder.mCard, position);
+
                 return true;
 
             //Case default: Not a valid post type
             default:
                 return false;
+        }
+    }
+
+    private void animateViewIfNew(View view, int newPosition) {
+        if (newPosition > sLastPosition) {
+            sLastPosition = newPosition;
+            AnimationHelper.slideFromBelowWithFade(view.getRootView(),
+                    Config.UI_TIMELINE_ANIMATION_DURATION);
         }
     }
 
@@ -154,28 +166,6 @@ public class TimelineHelper {
             button.setSelected(false);
         }
         counter.setText(String.valueOf(post.getVolts()));
-    }
-
-    public static void loadImageInTimeline(SimpleDraweeView draweeView,
-                                           Uri highResUri,
-                                           Uri lowResUri) {
-        draweeView.setVisibility(View.VISIBLE);
-
-        //Main request for the image to load
-        ImageRequest highResRequest = ImageRequestBuilder.newBuilderWithSource(highResUri)
-                .setLocalThumbnailPreviewsEnabled(true)
-                .setProgressiveRenderingEnabled(true)
-                .build();
-
-        //Image loader controller
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setLowResImageRequest(ImageRequest.fromUri(lowResUri))
-                .setImageRequest(highResRequest)
-                .setTapToRetryEnabled(true)
-                .setOldController(draweeView.getController())
-                .build();
-
-        draweeView.setController(controller);
     }
 
 }

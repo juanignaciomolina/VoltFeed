@@ -122,7 +122,6 @@ public class TimelineFragment extends Fragment {
                 .setLoaderDividerColor(getResources().getColor(R.color.white_4));
 
         mRecyclerView.setAdapter(mTimelineRecyclerViewAdapter);
-        //TODO (1) customize animations extending RecyclerView.ItemAnimator class
     }
 
     private void populateUi() {

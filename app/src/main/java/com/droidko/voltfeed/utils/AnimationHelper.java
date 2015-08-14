@@ -17,6 +17,14 @@ public class AnimationHelper {
         view.startAnimation(animation);
     }
 
+    public static void slideFromBelowWithFade(View view, int duration) {
+        Animation animation = AnimationUtils.loadAnimation(
+                VoltfeedApp.getContextInstance(),
+                R.anim.slide_from_below_fade);
+        animation.setDuration(duration);
+        view.startAnimation(animation);
+    }
+
     public static void slideToTop(View view, int duration) {
         Animation animation = AnimationUtils.loadAnimation(
                 VoltfeedApp.getContextInstance(),

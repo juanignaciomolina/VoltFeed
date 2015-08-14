@@ -10,8 +10,10 @@
 
     <!-- Posts colors pallete -->
     <color name="pallete_post_idea">#FFDB0A5B</color>
+    <color name="pallete_post_idea_background">#FFFCECEF</color>
     <color name="pallete_post_idea_dark">#FFAf0848</color>
     <color name="pallete_post_image">#FF398FB8</color>
+    <color name="pallete_post_image_background">#FFE1F5FE</color>
     <color name="pallete_post_image_dark">#FF27627E</color>
     <color name="pallete_post_camera">#FF492846</color>
     <color name="pallete_post_camera_dark">#FF3C213A</color>

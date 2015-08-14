@@ -14,6 +14,7 @@ public class TimelineImagePostViewHolder extends RecyclerView.ViewHolder {
     public TextView mVoltsCounter;
     public TextView mDate;
     public SimpleDraweeView mPicture;
+    public View mCard;
 
     public TimelineImagePostViewHolder(View itemLayoutView) {
         super(itemLayoutView);
@@ -22,6 +23,7 @@ public class TimelineImagePostViewHolder extends RecyclerView.ViewHolder {
         this.mVoltsCounter = (TextView) itemLayoutView.findViewById(R.id.timeline_post_image_volt_count);
         this.mDate = (TextView) itemLayoutView.findViewById(R.id.timeline_post_image_date);
         this.mPicture = (SimpleDraweeView) itemLayoutView.findViewById(R.id.timeline_post_image_picture);
+        this.mCard = itemLayoutView.findViewById(R.id.timeline_post_image_card);
     }
 
 }

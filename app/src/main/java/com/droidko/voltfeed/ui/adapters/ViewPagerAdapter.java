@@ -2,13 +2,13 @@ package com.droidko.voltfeed.ui.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.droidko.voltfeed.fragments.ConnectionsFragment;
-import com.droidko.voltfeed.fragments.TimelineFragment;
 import com.droidko.voltfeed.fragments.ProfileFragment;
+import com.droidko.voltfeed.fragments.TimelineFragment;
 
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     private CharSequence mTitles[];
     private int mNumbOfTabs;

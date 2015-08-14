@@ -28,6 +28,7 @@ public class Config {
     public static final int UI_TOOLBAR_ELEVATION = 10;
     public static final int UI_TABS_ELEVATION = 8;
     public static final int UI_MOTD_COUNT = 5;
+    public static final int UI_TIMELINE_ANIMATION_DURATION = 400;
     public static final int UI_SCREEN_BASE_WIDTH = 1080;
     public static final int UI_SCREEN_BASE_HEIGHT = 1920;
 

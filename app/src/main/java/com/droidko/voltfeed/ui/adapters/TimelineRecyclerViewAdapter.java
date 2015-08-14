@@ -56,7 +56,7 @@ public class TimelineRecyclerViewAdapter extends RecyclerAdapter<TimelineRow> {
     // Replace the contents of a view (invoked by the RecyclerAdapter)
     @Override
     public void recyclerOnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        mTimelineHelper.populateTimelineViewHolder(getItems().get(position).getPost(), viewHolder);
+        mTimelineHelper.populateTimelineViewHolder(getItems().get(position).getPost(), viewHolder, position);
 
         if (mPaginationListener != null) {
             //Aproaching end of dataset -> require next page

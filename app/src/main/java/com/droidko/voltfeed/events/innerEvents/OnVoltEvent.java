@@ -1,6 +1,6 @@
 package com.droidko.voltfeed.events.innerEvents;
 
-import com.droidko.voltfeed.entities.Volt;
+import com.droidko.voltfeed.model.Volt;
 
 public class OnVoltEvent {
 

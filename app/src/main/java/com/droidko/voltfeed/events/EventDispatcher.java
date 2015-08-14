@@ -1,7 +1,7 @@
 package com.droidko.voltfeed.events;
 
-import com.droidko.voltfeed.entities.Post;
-import com.droidko.voltfeed.entities.Volt;
+import com.droidko.voltfeed.model.Post;
+import com.droidko.voltfeed.model.Volt;
 import com.droidko.voltfeed.events.innerEvents.OnNoConnection;
 import com.droidko.voltfeed.events.innerEvents.OnPublishEvent;
 import com.droidko.voltfeed.events.innerEvents.OnTimelineImageClickEvent;

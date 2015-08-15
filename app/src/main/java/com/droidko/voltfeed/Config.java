@@ -12,7 +12,7 @@ public class Config {
     //CLOUDINARY API
     public static final String CLOUDINARY_NAME = "voltfeed";
     public static final String CLOUDINARY_API_KEY = "986199667734139";
-    public static final String CLOUDINARY_API_SECRET = "IC10flmq1iP4EyhiCWeHyaWPK6BVLnWJqPutVBRS";
+    public static final String CLOUDINARY_API_SECRET = "Hc4DdDabuQcVbo-dgS2dZSp619s";
 
     //SharedPreferences
     public static final String LOGIN_PREFERENCES_KEY = "Login_preferences";
@@ -43,5 +43,5 @@ public class Config {
     public static final int USER_PASSWORD_MIN_LENGHT = 8;
 
     //POST
-    public static final int POST_IDEA_MAX_CHAR_LENGHT = 140;
+    public static final int POST_MAX_CHAR_LENGHT = 140;
 }

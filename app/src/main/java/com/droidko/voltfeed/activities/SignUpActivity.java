@@ -140,7 +140,7 @@ public class SignUpActivity extends ActionBarActivity {
                     || TextUtils.isEmpty(mail)
                     || TextUtils.isEmpty(password)
                     || TextUtils.isEmpty(confirmPassword) ) {
-                UiHelper.showToast(mContext, getString(R.string.login_require_all));
+                UiHelper.showToast(R.string.login_require_all);
                 return;
             }
 
@@ -180,7 +180,7 @@ public class SignUpActivity extends ActionBarActivity {
         public void done(ParseException e) {
             unlockUi();
             if (e == null) {
-                UiHelper.showToast(mContext, getString(R.string.signup_user_created));
+                UiHelper.showToast(R.string.signup_user_created);
                 UiHelper.startActivityClearStack(mContext, MainActivity.class);
             } else {
                 UiHelper.showParseError(mContext, e);

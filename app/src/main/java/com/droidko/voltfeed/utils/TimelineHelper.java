@@ -92,15 +92,22 @@ public class TimelineHelper {
             case Schema.POST_COL_TYPE_IMAGE:
                 final TimelineImagePostViewHolder imagePostViewHolder =
                         ((TimelineImagePostViewHolder) viewHolder);
-                imagePostViewHolder.mTitle.setText(post.getText());
-                UiHelper.setFontRoboto(imagePostViewHolder.mTitle);
+
+                if (!TextUtils.isEmpty(post.getText())) {
+                    imagePostViewHolder.mTitle.setText(post.getText());
+                    UiHelper.setFontRoboto(imagePostViewHolder.mTitle);
+                } else {
+                    imagePostViewHolder.mTitle.setVisibility(View.GONE);
+                }
+
                 imagePostViewHolder.mDate.setText(
                         new PrettyTime().format(post.getCreatedAt())
                 );
+
                 UiHelper.setFontVarela(imagePostViewHolder.mDate);
                 if (!TextUtils.isEmpty(post.getPicture())) {
                     final Uri fullResUri =
-                            Uri.parse(ImagesHelper.getFullScreenImage(post.getPicture()));
+                            Uri.parse(ImagesHelper.getZoomableScreenImage(post.getPicture()));
                     final Uri standarResUri =
                             Uri.parse(ImagesHelper.getTimelineImage(post.getPicture()));
 

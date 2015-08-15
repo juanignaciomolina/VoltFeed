@@ -58,8 +58,13 @@ public class UiHelper {
         return !TextUtils.isEmpty(email) && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public static void showToast(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    public static void showToast(String message) {
+        Toast.makeText(VoltfeedApp.getContextInstance(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showToast(int resourceId) {
+        Context context = VoltfeedApp.getContextInstance();
+        Toast.makeText(context, context.getText(resourceId), Toast.LENGTH_SHORT).show();
     }
 
     public static void startActivityClearStack(Context localContext,
@@ -74,23 +79,23 @@ public class UiHelper {
         switch (e.getCode()) {
             //Error: No internet connection
             case ParseException.CONNECTION_FAILED:
-                showToast(context, context.getString(R.string.error_no_internet));
+                showToast(R.string.error_no_internet);
                 EventDispatcher.dispatchNoConnection();
                 break;
 
             //Error: Email and/or password incorrect
             case ParseException.OBJECT_NOT_FOUND:
-                showToast(context, context.getString(R.string.login_wrong_credentials));
+                showToast(R.string.login_wrong_credentials);
                 break;
 
             //Error: Invalid username (already taken)
             case ParseException.USERNAME_TAKEN:
-                showToast(context, context.getString(R.string.signup_invalid_username));
+                showToast(R.string.signup_invalid_username);
                 break;
 
             //Error: Session expired
             case ParseException.INVALID_SESSION_TOKEN:
-                showToast(context, context.getString(R.string.error_session_expired));
+                showToast(R.string.error_session_expired);
                 break;
 
             //Error: Query results not cached
@@ -100,7 +105,7 @@ public class UiHelper {
 
             //Error ??: Default unknown error
             default:
-                showToast(context, context.getString(R.string.error_unknown));
+                showToast(R.string.error_unknown);
                 Log.e(Config.LOG_ERROR, e.getCode() + ": " + e.getMessage());
         }
     }

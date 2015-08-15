@@ -12,7 +12,6 @@ public class Post {
     private int mType;
     private String mPicture;
     private String mText;
-    private String mTitle;
     private String mUserId;
     private int mVolts;
     private Date mCreatedAt;
@@ -23,7 +22,6 @@ public class Post {
         setType(parseObject.getInt(Schema.POST_COL_TYPE));
         setPicture(parseObject.getString(Schema.POST_COL_PICTURE));
         setText(parseObject.getString(Schema.POST_COL_TEXT));
-        setTitle(parseObject.getString(Schema.POST_COL_TITLE));
         setUserId(parseObject.getString(Schema.POST_COL_USER_ID));
         setVolts(parseObject.getInt(Schema.POST_COL_VOLTS));
         setCreatedAt(parseObject.getCreatedAt());
@@ -60,14 +58,6 @@ public class Post {
 
     public void setText(String text) {
         this.mText = text;
-    }
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public void setTitle(String title) {
-        this.mTitle = title;
     }
 
     public String getUserId() {

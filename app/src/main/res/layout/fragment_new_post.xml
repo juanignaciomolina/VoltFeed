@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_new_post_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -71,47 +72,77 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/spacing_medium"
-            android:paddingBottom="@dimen/spacing_medium"
-            android:paddingLeft="@dimen/spacing_medium"
-            android:paddingRight="@dimen/spacing_small"
-            android:orientation="horizontal"
-            android:gravity="right">
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/fragment_new_post_edit_text_idea"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingRight="4dp"
-                android:minLines="4"
-                android:maxLength="200"
-                android:background="@color/transparent"
-                android:gravity="top|left"
-                android:hint="@string/fragment_new_post_write_something"
-                android:inputType="textCapSentences|textMultiLine"
-                android:singleLine="false"/>
+            <!-- post image -->
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/fragment_new_post_fresco_selected_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:contentDescription="post image"
+                android:scaleType="centerCrop"
+                background="@color/white_4"
+                fresco:roundedCornerRadius="4dp"
+                fresco:roundBottomLeft="false"
+                fresco:roundBottomRight="false"
+                fresco:roundWithOverlayColor="@color/white_1"
+                fresco:placeholderImage="@color/white_4"
+                android:visibility="gone"/>
+
+            <ProgressBar
+                android:id="@+id/fragment_new_post_progressbar_uploading"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:paddingTop="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_medium"
+                android:paddingLeft="@dimen/spacing_medium"
+                android:paddingRight="@dimen/spacing_small"
+                android:orientation="horizontal"
+                android:gravity="right">
 
-                <TextView
-                    android:id="@+id/fragment_new_post_text_view_char_counter"
-                    android:layout_width="match_parent"
-                    android:layout_height="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:text="140"
-                    android:gravity="center"/>
-
-                <ImageView
-                    android:id="@+id/fragment_new_post_button_idea"
-                    android:layout_width="48dp"
+                <EditText
+                    android:id="@+id/fragment_new_post_edit_text_post_text"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    style="@style/flatButton.idea"
-                    android:src="@drawable/ic_idea_button"/>
+                    android:layout_weight="1"
+                    android:paddingRight="4dp"
+                    android:minLines="4"
+                    android:maxLength="200"
+                    android:background="@color/transparent"
+                    android:gravity="top|left"
+                    android:hint="@string/fragment_new_post_write_something"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:singleLine="false"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_new_post_text_view_char_counter"
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="140"
+                        android:gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/fragment_new_post_button_publish"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        style="@style/flatButton.idea"
+                        android:src="@drawable/ic_idea_button"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

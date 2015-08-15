@@ -84,15 +84,6 @@
         </style>
     <!-- End of VOLT BAR -->
 
-    <!-- Start of TIMELINE POST -->
-        <!-- POST BACKGROUND -->
-        <style name="timelinePost">
-            <item name="android:layout_width">match_parent</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:background">@drawable/background_card</item>
-        </style>
-    <!-- End of TIMELINE POST -->
-
     <!-- Start of FULL SCREEN ACTIVITY -->
         <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
             <item name="android:windowContentOverlay">@null</item>

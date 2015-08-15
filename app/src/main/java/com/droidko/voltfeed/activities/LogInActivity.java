@@ -130,7 +130,7 @@ public class LogInActivity extends VoltfeedActivity {
 
             //Rule: Every field is required
             if (mail.isEmpty() || password.isEmpty()) {
-                UiHelper.showToast(mContext, getString(R.string.login_require_all));
+                UiHelper.showToast(R.string.login_require_all);
                 return;
             }
 
@@ -167,7 +167,7 @@ public class LogInActivity extends VoltfeedActivity {
         @Override
         public void done(ParseUser parseUser, com.parse.ParseException e) {
             if (parseUser != null) {
-                UiHelper.showToast(mContext, getString(R.string.login_welcome));
+                UiHelper.showToast(R.string.login_welcome);
                 UiHelper.startActivityClearStack(mContext, MainActivity.class);
             } else {
                 Log.e(Config.LOG_ERROR, String.valueOf(e.getCode()) + ": " + e.getMessage());

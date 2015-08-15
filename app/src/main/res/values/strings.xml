@@ -53,6 +53,8 @@
 
     <!-- NEW POST FRAGMENT -->
     <string name="fragment_new_post_write_something">Speak your mind…</string>
+    <string name="fragment_new_post_image_uploaded">Image uploaded</string>
+    <string name="fragment_new_post_publish_successful">Idea posted</string>
 
     <!-- MESSAGE OF THE DAY -->
     <string name="motd_1">Electrifying some people to get some news…</string>

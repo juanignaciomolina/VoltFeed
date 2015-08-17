@@ -10,6 +10,7 @@ import com.droidko.voltfeed.R;
 import com.droidko.voltfeed.model.User;
 import com.droidko.voltfeed.ui.connections.ConnectionsUserViewHolder;
 import com.droidko.voltfeed.ui.widget.RecyclerView.RecyclerAdapter;
+import com.droidko.voltfeed.utils.ApiHelper;
 import com.droidko.voltfeed.utils.ImagesHelper;
 import com.droidko.voltfeed.utils.UiHelper;
 import com.parse.ParseUser;
@@ -65,18 +66,26 @@ public class ConnectionsRecyclerViewAdapter extends RecyclerAdapter<User> {
     public void recyclerOnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         ConnectionsUserViewHolder connectionsUserViewHolder =
                 (ConnectionsUserViewHolder) viewHolder;
-        User user = getItems().get(position);
+        final User user = getItems().get(position);
 
         ImagesHelper.loadThumbAvatarImage(connectionsUserViewHolder.mAvatar, user);
         connectionsUserViewHolder.mUsername.setText(user.getUsername());
         connectionsUserViewHolder.mFollowersCounter.setText(String.valueOf(user.getFollowersCount()));
         connectionsUserViewHolder.mVoltsCounter.setText(String.valueOf(user.getVoltsCount()));
 
+        connectionsUserViewHolder.mFollowButton.setSelected(ApiHelper.isUserFollow(user));
+
+        connectionsUserViewHolder.mFollowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setSelected(!view.isSelected());
+                ApiHelper.followUser(user, view.isSelected());
+            }
+        });
+
         UiHelper.setFontVarela(connectionsUserViewHolder.mUsername);
         UiHelper.setFontVarela(connectionsUserViewHolder.mFollowers);
         UiHelper.setFontVarela(connectionsUserViewHolder.mVolts);
-
-        //TODO POPULATE USER
 
         if (mPaginationListener != null) {
             //Aproaching end of dataset -> require next page

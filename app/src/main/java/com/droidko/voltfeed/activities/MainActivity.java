@@ -92,6 +92,7 @@ public class MainActivity extends VoltfeedActivity {
     protected void init() {
         checkUserLoggedIn(); //IMPORTANT! Should be the first thing in the Activity lifecycle
         ApiHelper.initVoltedPosts();
+        ApiHelper.initFollowingUsers();
 
         mTitles[0] = getString(R.string.fragment_connections_name);
         mTitles[1] = getString(R.string.fragment_timeline_name);

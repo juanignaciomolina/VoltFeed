@@ -9,6 +9,7 @@
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_medium">16dp</dimen>
     <dimen name="spacing_medium_extra">24dp</dimen>
+    <dimen name="spacing_large_minor">36dp</dimen>
     <dimen name="spacing_large">48dp</dimen>
     <dimen name="spacing_large_extra">56dp</dimen>
 

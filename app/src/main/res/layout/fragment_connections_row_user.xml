@@ -29,12 +29,14 @@
 
         <ImageView
             android:id="@+id/fragment_connection_row_follow"
-            android:layout_width="@dimen/spacing_medium_extra"
-            android:layout_height="@dimen/spacing_medium_extra"
+            android:layout_width="@dimen/spacing_large"
+            android:layout_height="@dimen/spacing_large_minor"
             android:layout_marginStart="@dimen/spacing_medium"
             android:layout_marginLeft="@dimen/spacing_medium"
-            android:src="@drawable/likeon"
-            android:scaleType="centerCrop"
+            android:src="@drawable/selector_icon_connect"
+            android:background="@drawable/selector_button_flat_connect"
+            android:padding="@dimen/spacing_small"
+            android:scaleType="fitCenter"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
@@ -121,6 +123,14 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_small"
+        android:text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."
+        android:maxLines="4"
+        android:ellipsize="end"/>
 
     <View
         android:layout_width="match_parent"

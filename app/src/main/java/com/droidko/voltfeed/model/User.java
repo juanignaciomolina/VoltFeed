@@ -80,4 +80,8 @@ public class User extends RecyclerItem {
     public String getUsername() {
         return mUsername;
     }
+
+    public String getId() {
+        return mId;
+    }
 }

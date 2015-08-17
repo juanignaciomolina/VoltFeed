@@ -2,11 +2,12 @@
 <resources>
 
     <!-- UI main colors pallete-->
-    <color name="pallete_green">#FF1fc29f</color>
-    <color name="pallete_green_dark">#FF1bb392</color>
-    <color name="pallete_red">#FFf25a6b</color>
-    <color name="pallete_blue">#FF2f354d</color>
-    <color name="pallete_blue_dark">#FF20263d</color>
+    <color name="pallete_green">#FF1FC29F</color>
+    <color name="pallete_green_dark">#FF1BB392</color>
+    <color name="pallete_red">#FFF25A6B</color>
+    <color name="pallete_blue">#FF2F354D</color>
+    <color name="pallete_blue_dark">#FF20263D</color>
+    <color name="pallete_assets_white">#FFEBEFF0</color>
 
     <!-- Posts colors pallete -->
     <color name="pallete_post_idea">#FFDB0A5B</color>

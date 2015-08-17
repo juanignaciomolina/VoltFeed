@@ -72,7 +72,6 @@ public class ConnectionsFragment extends Fragment {
                 .setLoaderDividerColor(getResources().getColor(R.color.white_4));
 
         mRecyclerView.setAdapter(mConnectionsRecyclerViewAdapter);
-        //TODO (1) customize animations extending RecyclerView.ItemAnimator class
     }
 
     private void setLoadingRowFromBackground(final boolean state, @Nullable final Integer position) {
@@ -96,14 +95,14 @@ public class ConnectionsFragment extends Fragment {
         Date latestDate = null;
         if (mConnectionsRecyclerViewAdapter.getLastUser() != null) latestDate =
                 mConnectionsRecyclerViewAdapter.getLastUser().getCreatedAt();
-        ApiHelper.getOlderConnectionsUsers(
+        ApiHelper.getOlderFollowingUsers(
                 latestDate,
                 mGetOlderUsersCallback);
     }
 
     private void doGetNewerUsers() {
         mUsersLoading = true;
-        ApiHelper.getNewerConnectionsUsers(
+        ApiHelper.getNewerFollowingUsers(
                 mConnectionsRecyclerViewAdapter.getFirstUser().getCreatedAt(),
                 mGetNewerUsersCallback);
     }

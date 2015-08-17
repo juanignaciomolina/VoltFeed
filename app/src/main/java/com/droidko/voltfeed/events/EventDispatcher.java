@@ -1,5 +1,6 @@
 package com.droidko.voltfeed.events;
 
+import com.droidko.voltfeed.events.innerEvents.OnFollowingUsersUpdate;
 import com.droidko.voltfeed.model.Post;
 import com.droidko.voltfeed.model.Volt;
 import com.droidko.voltfeed.events.innerEvents.OnNoConnection;
@@ -51,6 +52,14 @@ public class EventDispatcher {
     //Listeners: TimelineFragment
     public static void dispatchVoltsPostsUpdate(HashSet<String> voltedPostsSet) {
         EventBus.getDefault().post(new OnVoltsPostsUpdate(voltedPostsSet));
+    }
+    //----------------------------------------------------------------------------------------------
+
+    //Event name: onFollowingUserPostsUpdate
+    //Broadcasters: ApiHelper
+    //Listeners: ConnectionsFragment
+    public static void dispatchFollowingUsersUpdate(HashSet<String> followingUsersSet) {
+        EventBus.getDefault().post(new OnFollowingUsersUpdate(followingUsersSet));
     }
     //----------------------------------------------------------------------------------------------
 }
